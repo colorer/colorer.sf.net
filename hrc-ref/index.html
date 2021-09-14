@@ -1,0 +1,1295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>HRC Language Reference</title><link rel="stylesheet" href="../styles/styles.css" type="text/css"/><link rel="stylesheet" href="../styles/hrc-ref.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.70.1"/><meta name="description" content="Abstract This reference describes HRC language, used in Colorer-take5 Library to define and represent syntax and lexical structure of various programming languages. These syntax definitions are used by library to parse and colorize text in editors and other software."/></head><body><div class="article" lang="en"><div xmlns=""><div><div><h1 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="article1"/>HRC Language Reference</h1></div><div><h2 xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema"> 12 January 2010</h2></div><div><dl xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema"><dt>This version:</dt><dd>take5.be5 (rev2): 12 January 2010<br/>(Available as
+    <a xmlns="http://www.w3.org/1999/xhtml" href="http://colorer.sf.net/hrc-ref/" target="_top">HTML</a>,
+    <a xmlns="http://www.w3.org/1999/xhtml" href="http://colorer.sf.net/hrc-ref/hrc-ref.pdf" target="_top">PDF</a>,
+    <a xmlns="http://www.w3.org/1999/xhtml" href="http://colorer.sf.net/hrc-ref/hrc-ref.zip" target="_top">DocBook</a>)
+  </dd><dt>Previous versions:</dt><dd>take5.be5: 26 April 2007<br/>take5.beta4: 28 April 2005<br/>take5.beta4(draft): 19 February 2005<br/>take5.beta3: 30 January 2004<br/>take5.beta2: 12 September 2003<br/>take5.beta1: 30 March 2003<br/>take5.alpha3: 1 March 2003<br/>take5.alpha2: 30 January 2003</dd></dl></div><div><dl xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema"><dt>Author:</dt><dd><span xmlns="http://www.w3.org/1999/xhtml" class="firstname">Igor</span> <span xmlns="http://www.w3.org/1999/xhtml" class="surname">Russkih</span>  <code xmlns="http://www.w3.org/1999/xhtml" class="email">&lt;<a href="mailto:irusskih at gmail.com">irusskih at gmail.com</a>&gt;</code></dd></dl></div><div><dl xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema"><dt>Author:</dt><dd><span xmlns="http://www.w3.org/1999/xhtml" class="firstname">Anatoly</span> <span xmlns="http://www.w3.org/1999/xhtml" class="surname">Techtonik</span>  <code xmlns="http://www.w3.org/1999/xhtml" class="email">&lt;<a href="mailto:techtonik at gmail.com">techtonik at gmail.com</a>&gt;</code></dd></dl></div><div><p xmlns="http://www.w3.org/1999/xhtml" class="copyright">Copyright © 2003, 2004, 2005, 2006, 2007, 2010 Igor Russkih (Cail Lomecb)</p></div><div><div xmlns="http://www.w3.org/1999/xhtml" class="abstract"><p class="title"><b>Abstract</b></p><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">This reference describes <abbr title="Highlighting Resource Codes">HRC</abbr>
+language, used in Colorer-take5 Library to define and represent
+syntax and lexical structure of various programming languages.
+These syntax definitions are used by library to parse and colorize
+text in editors and other software.
+</div></div></div></div><hr xmlns="http://www.w3.org/1999/xhtml"/></div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="toc"><h2>Table of Contents</h2><dl><dt xmlns="http://www.w3.org/1999/xhtml"><span class="section"><a href="#introduction">1. Introduction</a></span></dt><dt xmlns="http://www.w3.org/1999/xhtml"><span class="section"><a href="#basics">2. Basics</a></span></dt><dd xmlns="http://www.w3.org/1999/xhtml"><dl><dt><span class="section"><a href="#basics.parsing">2.1. Syntax processing overview</a></span></dt><dt><span class="section"><a href="#basics.hrc.syntax">2.2. HRC syntax components</a></span></dt><dt><span class="section"><a href="#basics.filetypes">2.3. File Types</a></span></dt><dt><span class="section"><a href="#basics.namespaces">2.4. Namespaces</a></span></dt></dl></dd><dt xmlns="http://www.w3.org/1999/xhtml"><span class="section"><a href="#schemesyntax">3. Scheme syntax</a></span></dt><dd xmlns="http://www.w3.org/1999/xhtml"><dl><dt><span class="section"><a href="#schemesyntax.keywords">3.1. Keyword lists</a></span></dt><dt><span class="section"><a href="#schemesyntax.re">3.2. Regular Expressions</a></span></dt><dt><span class="section"><a href="#schemesyntax.contextswitch">3.3. Block context switch</a></span></dt><dt><span class="section"><a href="#schemesyntax.boundaries">3.4. Scheme boundaries and priority</a></span></dt></dl></dd><dt xmlns="http://www.w3.org/1999/xhtml"><span class="section"><a href="#interscheme">4. Inter-scheme links</a></span></dt><dd xmlns="http://www.w3.org/1999/xhtml"><dl><dt><span class="section"><a href="#interscheme.inheritance">4.1. Inheritance</a></span></dt><dt><span class="section"><a href="#interscheme.substitution">4.2. Scheme substitutions</a></span></dt></dl></dd><dt xmlns="http://www.w3.org/1999/xhtml"><span class="section"><a href="#coding.std">5. HRC Language Features and Conventions</a></span></dt><dd xmlns="http://www.w3.org/1999/xhtml"><dl><dt><span class="section"><a href="#coding.std.naming">5.1. Elements naming</a></span></dt><dt><span class="section"><a href="#coding.std.spec">5.2. Default package feature</a></span></dt><dt><span class="section"><a href="#coding.rec">5.3. Coding Recommendations</a></span></dt></dl></dd></dl><h2>Appendixes</h2><dl><dt xmlns="http://www.w3.org/1999/xhtml"><span class="appendix"><a href="#hrcre">A. Regular Expressions syntax</a></span></dt><dd xmlns="http://www.w3.org/1999/xhtml"><dl><dt><span class="section"><a href="#hrcre.intro">1. Introduction</a></span></dt><dt><span class="section"><a href="#hrcre.syntax">2. Syntax</a></span></dt><dt><span class="section"><a href="#hrcre.meta">3. Metacharacters</a></span></dt><dt><span class="section"><a href="#hrcre.exmeta">4. Extended metacharacters</a></span></dt><dt><span class="section"><a href="#hrcre.ops">5. Operators</a></span></dt><dt><span class="section"><a href="#hrcre.exops">6. Extended operators</a></span></dt><dt><span class="section"><a href="#hrcre.examples">7. Examples</a></span></dt></dl></dd><dt xmlns="http://www.w3.org/1999/xhtml"><span class="appendix"><a href="#catalog.xml">B. Format of catalog.xml file</a></span></dt><dt xmlns="http://www.w3.org/1999/xhtml"><span class="appendix"><a href="#hrd">C. Format of HRD color schemes</a></span></dt><dt xmlns="http://www.w3.org/1999/xhtml"><span class="appendix"><a href="#hrcxsd">D. XML Schema for HRC Language</a></span></dt><dt xmlns="http://www.w3.org/1999/xhtml"><span class="appendix"><a href="#history">E. History of the changes</a></span></dt><dt xmlns="http://www.w3.org/1999/xhtml"><span class="bibliography"><a href="#bibliography">References</a></span></dt></dl></div><hr xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema"/><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="introduction"/>1. Introduction</h2></div></div></div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+<span xmlns="http://www.w3.org/1999/xhtml" class="strong"><strong>HRC</strong></span> is a script language which describes text parsing process to produce syntax
+highlighting. It is <span xmlns="http://www.w3.org/1999/xhtml" class="strong"><strong>XML-based</strong></span> language with its own XML vocabulary and structure.
+HRC is designed to make the process of describing structures of programming languages
+most flexible and efficient.
+</div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Looking back to early 1999, HRC had simple XML-like structure describing several
+common language constructions. Since then it evolved into very powerful way of
+describing complex relations between different languages and syntax contexts.
+HRC is a full-fledged "XML application" and that means HRC definitions can be
+automatically generated from XML descriptions in other languages and converted
+to other formats through XSLT templates or other means.
+</div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+HRC uses <span xmlns="http://www.w3.org/1999/xhtml" class="strong"><strong>Regular Expressions</strong></span> to achieve flexible recognition
+of text elements, lexemes and tokens. Still Regular Expressions (<span xmlns="http://www.w3.org/1999/xhtml" class="strong"><strong>RE</strong></span>) are able
+to recognise only a limited set of syntax constructions when
+it is often necessary to describe more complex structures. Therefore HRC uses special
+construct named <span xmlns="http://www.w3.org/1999/xhtml" class="strong"><strong>"scheme"</strong></span> to define behaviour of
+more powerful recursive set of languages (context free). Such schemes in combination
+with RE make HRC strong declarative language.
+</div></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="basics"/>2. Basics</h2></div></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a id="basics.parsing"/>2.1. Syntax processing overview</h3></div></div></div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+When Colorer starts it reads available HRC files to know what syntax highlight
+rules are available and to which files they apply to. HRC file usually
+contains rules to colorize specific content type. Each of these rules is called
+"scheme" and is defined by XML <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.scheme">&lt;scheme&gt;</a> element. Content types are
+defined with XML <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.type">&lt;type&gt;</a> element with "name" attribute
+(such as <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>&lt;type name="python"&gt;</em></span>). Schemes for this
+content type are placed inside of <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.type">&lt;type&gt;</a>. HRC syntax allows several
+<a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.type">&lt;type&gt;</a> elements in HRC file, but usually only one is included.
+When colorer knows which type to apply to the given content it starts
+processing with <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.scheme">&lt;scheme&gt;</a> element that that has the same name
+as enclosed type (i.e. <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>&lt;scheme name="python"&gt;</em></span> will be the
+"main() function" for the python <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.type">&lt;type&gt;</a> above).
+</div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Matching <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.type">&lt;type&gt;</a> to content is made using information from
+<a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.prototype">&lt;prototype&gt;</a> element that contains filename masks and content
+tests (see below). HRC is very flexible in layout, and for convenience all
+prototypes are extracted into main <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>proto.hrc</em></span> file.
+</div></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a id="basics.hrc.syntax"/>2.2. HRC syntax components</h3></div></div></div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+HRC describes and stores syntax rules for numerous languages. All language definitions
+are divided into two parts:
+<div xmlns="http://www.w3.org/1999/xhtml" class="itemizedlist"><ul type="disc"><li><div xmlns="" class="p">
+<span xmlns="http://www.w3.org/1999/xhtml" class="strong"><strong>informal part</strong></span> includes different non-syntax specific
+properties of a language: name, short description, common file extensions and autodetection
+rules. Informal part is also called <span xmlns="http://www.w3.org/1999/xhtml" class="strong"><strong>language prototype</strong></span>.
+  </div></li><li><div xmlns="" class="p">
+<span xmlns="http://www.w3.org/1999/xhtml" class="strong"><strong>formal part</strong></span> contains actual definition of target language
+rules in terms of syntax and semantics. It is referenced as <span xmlns="http://www.w3.org/1999/xhtml" class="strong"><strong>language type</strong></span>.
+  </div></li></ul></div>
+Prototypes are used to detect correct language type that should be applied to a file,
+they define some application-dependent properties and other useful information about
+languages. Because prototypes are separated from real language definitions, full type
+loading occurs only when language is correctly matched or requested by user. This
+guarantees fast library bootstrap. Prototype definitions grouped into one file allow
+users to get a quick overview of the languages supported by the library.
+</div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p"><b xmlns="http://www.w3.org/1999/xhtml">Structure. </b>
+Each HRC file contains either several language prototypes or
+one language type. XML content starts with root <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.hrc">&lt;hrc&gt;</a>
+element, which contains all other HRC definitions.
+
+<a xmlns="http://www.w3.org/1999/xhtml" id="ref.hrc.hrc"/><div class="xsdocwrap"><div class="xsdocdecl">Element:
+    <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrc_hrc"><code class="literal">&lt;hrc&gt;</code></a></div><div class="xsdoc">Root of the HRC file XML structure.</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">version</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="http://www.w3.org/TR/xmlschema-2#NMTOKEN" target="_top"><code class="literal">xs:NMTOKEN</code></a></div><div class="xsdoc">Specifies version of HRC language. For example, 'take5' for Colorer-take5.</div><div class="xsdocdecl">Content:</div><div class="xsdochead">Element:
+   <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.annotation"><code class="literal">annotation</code></a></div><div class="xsdoc">Defines formal documentation for the HRC language elements.</div><div class="xsdochead">Element:
+   <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.prototype"><code class="literal">prototype</code></a></div><div class="xsdoc">Defines prototype of single target programming language.</div><div class="xsdochead">Element:
+   <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.package"><code class="literal">package</code></a></div><div class="xsdoc">Defines prototype of the defined file type, but use this type as an internal hidden package structure.</div><div class="xsdochead">Element:
+   <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.type"><code class="literal">type</code></a></div><div class="xsdoc">Language container, used to store all parser specific information.</div></div>
+
+
+Every bit of HRC is either XML element or attribute.
+You can find formal definition of the HRC XML syntax in <a xmlns="http://www.w3.org/1999/xhtml" href="#hrcxsd" title="D. XML Schema for HRC Language">Appendix D, <i>XML Schema for HRC Language</i></a>.
+For instance, all HRC files start with the syntax similar to following:
+
+
+
+<div xmlns="http://www.w3.org/1999/xhtml" class="example"><a id="example.hrc.file"/><p class="title"><b>Example 1. Common HRC file</b></p><div class="example-contents"><pre xmlns="" class="source">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE hrc PUBLIC "-//Cail Lomecb//DTD Colorer HRC take5//EN"
+  "http://colorer.sf.net/2003/hrc.dtd"&gt;
+&lt;hrc version="take5" xmlns="http://colorer.sf.net/2003/hrc"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://colorer.sf.net/2003/hrc
+                         http://colorer.sf.net/2003/hrc.xsd"&gt;
+  &lt;annotation&gt;
+   &lt;documentation&gt;
+   your documentation...
+   &lt;/documentation&gt;
+  &lt;/annotation&gt;
+
+  your definitions...
+
+&lt;/hrc&gt;
+
+</pre></div></div><br xmlns="http://www.w3.org/1999/xhtml" class="example-break"/>
+
+
+Each element in HRC can be documented with <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>XML Schema</em></span>-like
+<a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.annotation">&lt;annotation&gt;</a>:
+<a xmlns="http://www.w3.org/1999/xhtml" id="ref.hrc.annotation"/><div class="xsdocwrap"><div class="xsdocdecl">Element:
+    <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrc_annotation"><code class="literal">&lt;annotation&gt;</code></a></div><div class="xsdoc">Defines formal documentation for the HRC language elements.</div><div class="xsdocdecl">Content:</div><div class="xsdochead">Element:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">appinfo</code></div><div class="xsdoc">Formal annotation part, used for tools processing.</div><div class="xsdochead">Element:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">documentation</code></div><div class="xsdoc">Human documentation part.</div><div class="xsdochead">Element:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">contributors</code></div><div class="xsdoc">Contribute information part.</div></div>
+
+Annotations can be used anywhere in HRC file to describe and document syntax
+elements.
+
+</div></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a id="basics.filetypes"/>2.3. File Types</h3></div></div></div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">HRC rules can reuse or import definitions from each other, some
+languages (like HTML) may include bits of other languages (i.e. PHP),
+so HRC files can depend on each other for correct highlighting. Therefore
+HRC files are more like one big database than a bunch of separate
+definitions. To link them together several syntax elements are used.
+</div><div class="section" lang="en"><div class="titlepage"><div><div><h4 class="title"><a id="basics.filetypes.proto"/>2.3.1. Prototypes</h4></div></div></div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Each language is identified by name and short description. This information
+is included in language prototype. Names are used to reference languages
+in HRC rules. Prototypes are usually contained in top level file
+<span xmlns="http://www.w3.org/1999/xhtml" class="strong"><strong>proto.hrc</strong></span>, but considering flexible
+syntax of HRC they could be just everywhere.
+</div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Prototypes are defined by <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.prototype">&lt;prototype&gt;</a> elements.
+
+<div xmlns="http://www.w3.org/1999/xhtml" class="example"><a id="example.hrc.prototype"/><p class="title"><b>Example 2. Prototype definition</b></p><div class="example-contents"><pre xmlns="" class="source">
+  &lt;prototype name="cpp" group="main" description="C++"&gt;
+    &lt;location link="base/cpp.hrc"/&gt;
+    &lt;filename&gt;/\.(cpp|cxx|cc|hpp|h)$/i&lt;/filename&gt;
+    &lt;firstline&gt;/^\s*(\/\* | \/\/)/xi&lt;/firstline&gt;
+    &lt;firstline&gt;/\#include/&lt;/firstline&gt;
+    &lt;firstline&gt;/\#define|\#if/&lt;/firstline&gt;
+  &lt;/prototype&gt;
+
+</pre></div></div><br xmlns="http://www.w3.org/1999/xhtml" class="example-break"/>
+
+The example shows prototype for "C++" language. It contains short
+description, information about language group and location of HRC file
+with formal part of syntax definition. It also includes RE to identify the
+language by filename extension and one or more RE to guess the language
+by first few lines (or several hundred bytes - depends on implementation)
+of file contents.
+</div><a id="ref.hrc.prototype"/><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="xsdocwrap"><div class="xsdocdecl">Element:
+    <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrc_prototype"><code class="literal">&lt;prototype&gt;</code></a></div><div class="xsdoc">Defines prototype of single target programming language. This prototype must have name, equals to real type, defined in the linked resource.</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">name</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="http://www.w3.org/TR/xmlschema-2#NCName" target="_top"><code class="literal">xs:NCName</code></a></div><div class="xsdoc">Common internal name of this language type. Must be valid XML non-qualified name.</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">description</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="http://www.w3.org/TR/xmlschema-2#string" target="_top"><code class="literal">xs:string</code></a></div><div class="xsdoc">User description, used to represent language in target IDE.</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">group</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="http://www.w3.org/TR/xmlschema-2#Name" target="_top"><code class="literal">xs:Name</code></a></div><div class="xsdoc">Group of languages, this language belongs to.</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">targetNamespace</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="http://www.w3.org/TR/xmlschema-2#anyURI" target="_top"><code class="literal">xs:anyURI</code></a></div><div class="xsdoc">Applicable to the XML group of languages. Specifies namespace, this HRC file describing. Allows automatically linking and combining different XML languages in HRC.</div><div class="xsdocdecl">Content:</div><div class="xsdochead">Element:
+   <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.annotation"><code class="literal">annotation</code></a></div><div class="xsdoc">Defines formal documentation for the HRC language elements.</div><div class="xsdochead">Element:
+   <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.location"><code class="literal">location</code></a></div><div class="xsdoc">Points to the location of a HRC file with this language description.</div><div class="xsdochead">Element:
+   <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.filename"><code class="literal">filename</code></a></div><div class="xsdoc">Defines Regular Expression, used to identify programming language by its file name.</div><div class="xsdochead">Element:
+   <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.firstline"><code class="literal">firstline</code></a></div><div class="xsdoc">Defines Regular Expression, used to identify programming language by its starting content.</div><div class="xsdochead">Element:
+   <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.parameters"><code class="literal">parameters</code></a></div><div class="xsdoc">Custom parameters, used to specify additional properties of this language type.</div></div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+
+If language is not specified explicitly library needs to detect it to
+start syntax highlighting process. This is the purpose of <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.firstline">&lt;firstline&gt;</a> and <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.filename">&lt;filename&gt;</a>
+parameters. Each matched instance of one of these parameters adds additional
+weight to the language. Default amount of points added can be specified
+explicitly with <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>weight</em></span> attribute of these elements.
+When all weights are calculated, the first language with maximum weight is
+selected to highlight the file.
+
+</div><a id="ref.hrc.filename"/><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="xsdocwrap"><div class="xsdocdecl">Element:
+    <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrc_filename"><code class="literal">&lt;filename&gt;</code></a></div><div class="xsdoc">Defines Regular Expression, used to identify programming language by its file name. This can include file's extension or some more complex dependencies.</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">weight</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="http://www.w3.org/TR/xmlschema-2#decimal" target="_top"><code class="literal">xs:decimal</code></a>, default:
+     <code xmlns="http://www.w3.org/1999/xhtml" class="literal">2</code></div><div class="xsdoc">This attribute defines weight, added to the total language weight, when choosing one from a list of available.</div></div><a id="ref.hrc.firstline"/><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="xsdocwrap"><div class="xsdocdecl">Element:
+    <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrc_firstline"><code class="literal">&lt;firstline&gt;</code></a></div><div class="xsdoc">Defines Regular Expression, used to identify programming language by its starting content. First line can be used, or some small part of text. This entry has less default weight against filename one.</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">weight</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="http://www.w3.org/TR/xmlschema-2#decimal" target="_top"><code class="literal">xs:decimal</code></a>, default:
+     <code xmlns="http://www.w3.org/1999/xhtml" class="literal">1</code></div><div class="xsdoc">This attribute defines weight, added to the total language weight, when choosing one from a list of available.</div></div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+If any of these two elements is used more than once, each matched
+instance adds specified amount to the total weight of a language.
+</div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Actual language definition can be separated from its prototype and placed
+into other file (or resource). In this case <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.location">&lt;location&gt;</a> element
+specifies where to find the definition. The file or resource specified
+will not be loaded until language matches and is selected for highlightning
+process.
+<a xmlns="http://www.w3.org/1999/xhtml" id="ref.hrc.location"/><div class="xsdocwrap"><div class="xsdocdecl">Element:
+    <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrc_location"><code class="literal">&lt;location&gt;</code></a></div><div class="xsdoc">Points to the location of a HRC file with this language description. Link is a well formed URI address of the requested HRC file. This location can be relative to the current location of the parent type, or absolute (with URI schemas, supported by library). If URI schema is absent, 'file://' is assumed.</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">link</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="http://www.w3.org/TR/xmlschema-2#anyURI" target="_top"><code class="literal">xs:anyURI</code></a></div></div>
+</div><a id="ref.hrc.parameters"/><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="xsdocwrap"><div class="xsdocdecl">Element:
+    <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrc_parameters"><code class="literal">&lt;parameters&gt;</code></a></div><div class="xsdoc">Custom parameters, used to specify additional properties of this language type. These can include different language resources (icons, templates and so on). Also these parameters could be referenced from schema declaration, this allows to customize schemes loading process.</div><div class="xsdocdecl">Content:</div><div class="xsdochead">Element:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">param</code></div><div class="xsdoc">Single parameter [name,value] pair.</div></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h4 class="title"><a id="basics.filetypes.package"/>2.3.2. Packages</h4></div></div></div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Some syntax rules are common across various languages and it makes
+sense to define them separately and reference from other definitions.
+These definitions will not be visible to end users, so they can be
+thought of as "internal types". Such internal types are represented
+by <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.package">&lt;package&gt;</a> element:
+
+<a xmlns="http://www.w3.org/1999/xhtml" id="ref.hrc.package"/><div class="xsdocwrap"><div class="xsdocdecl">Element:
+    <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrc_package"><code class="literal">&lt;package&gt;</code></a></div><div class="xsdoc">Defines prototype of the defined file type, but use this type as an internal hidden package structure.</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">name</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="http://www.w3.org/TR/xmlschema-2#NCName" target="_top"><code class="literal">xs:NCName</code></a></div><div class="xsdoc">Common internal name of this package. Must be valid XML non-qualified name.</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">description</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="http://www.w3.org/TR/xmlschema-2#string" target="_top"><code class="literal">xs:string</code></a></div><div class="xsdoc">User description, used to represent package in target IDE.</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">targetNamespace</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="http://www.w3.org/TR/xmlschema-2#anyURI" target="_top"><code class="literal">xs:anyURI</code></a></div><div class="xsdoc">Applicable to the XML group of languages. Specifies namespace, this HRC file describing. Allows automatically linking and combining different XML languages in HRC.</div><div class="xsdocdecl">Content:</div><div class="xsdochead">Element:
+   <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.annotation"><code class="literal">annotation</code></a></div><div class="xsdoc">Defines formal documentation for the HRC language elements.</div><div class="xsdochead">Element:
+   <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.location"><code class="literal">location</code></a></div><div class="xsdoc">Points to the location of a HRC file with this language description.</div></div>
+
+This element doesn't contain <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.filename">&lt;filename&gt;</a> or <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.firstline">&lt;firstline&gt;</a>
+properties, because it doesn't directly map to any type of file or language. 
+In everything else its behaviour is identical to <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.prototype">&lt;prototype&gt;</a>
+element. Packages can be found in any HRC file including <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>proto.hrc</em></span>.
+For example:
+
+<div xmlns="http://www.w3.org/1999/xhtml" class="example"><a id="example.hrc.package"/><p class="title"><b>Example 3. Package definition</b></p><div class="example-contents"><pre xmlns="" class="source">
+  &lt;package name="def" group="packages" description="basic definitions"&gt;
+    &lt;location link="default.hrc"/&gt;
+  &lt;/package&gt;
+  &lt;package name="regexp" group="packages" description="Regexp common library"&gt;
+    &lt;location link="lib/regexp.hrc"/&gt;
+  &lt;/package&gt;
+
+</pre></div></div><br xmlns="http://www.w3.org/1999/xhtml" class="example-break"/>
+</div></div><div class="section" lang="en"><div class="titlepage"><div><div><h4 class="title"><a id="basics.filetypes.type"/>2.3.3. Types</h4></div></div></div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Type is a <a xmlns="http://www.w3.org/1999/xhtml" href="#basics" title="2. Basics">formal definition</a> of a language. It is normally contained in a separate file,
+which is referenced by <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.location">&lt;location&gt;</a> element of language prototype. <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.type">&lt;type&gt;</a>
+element is the starting point for parsing process, which holds syntax specific information.
+
+<a xmlns="http://www.w3.org/1999/xhtml" id="ref.hrc.type"/><div class="xsdocwrap"><div class="xsdocdecl">Element:
+    <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrc_type"><code class="literal">&lt;type&gt;</code></a></div><div class="xsdoc">Language container, used to store all parser specific information. These defines are used by parser to analyze and colorize target text data.</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">name</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="http://www.w3.org/TR/xmlschema-2#NCName" target="_top"><code class="literal">xs:NCName</code></a></div><div class="xsdoc">HRC Language type name.</div><div class="xsdocdecl">Content:</div><div class="xsdochead">Element:
+   <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.annotation"><code class="literal">annotation</code></a></div><div class="xsdoc">Defines formal documentation for the HRC language elements.</div><div class="xsdochead">Element:
+   <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.import"><code class="literal">import</code></a></div><div class="xsdoc">External type import statement.</div><div class="xsdochead">Element:
+   <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.region"><code class="literal">region</code></a></div><div class="xsdoc">Definition of basic syntax region - text range with assigned syntax meaning.</div><div class="xsdochead">Element:
+   <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.entity"><code class="literal">entity</code></a></div><div class="xsdoc">HRC Entity definition.</div><div class="xsdochead">Element:
+   <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.scheme"><code class="literal">scheme</code></a></div><div class="xsdoc">HRC scheme is a basic unit, which represents some fixed set of lexemes, tokens and syntax regions (lexical context).</div></div>
+
+Normally, each type is defined in a separate file, which may optionally
+contain corresponding prototype (if there is no prototype definition in
+the global repository).
+
+</div></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a id="basics.namespaces"/>2.4. Namespaces</h3></div></div></div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Each type defines its own name space with its elements. Each element must have
+unique identifier (local name) in this namespace, which is used to reference it
+from other elements. Within the same type all elements should be unique, but
+elements with the same name can belong to different types.
+</div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+An element can be referenced from the other type with its fully
+qualified name in form of <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>typename:elementname</em></span>.
+Sometimes there are a lot of inter-type links and use of qualified names
+can become a tedious task. To make the job easier HRC language has
+<a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.import">&lt;import&gt;</a> statement. It 'imports' all element names from
+other type into the current. There can be as many import statements as
+needed. Unqualified names are resolved in order of their definition.
+
+
+
+<a xmlns="http://www.w3.org/1999/xhtml" id="ref.hrc.import"/><div class="xsdocwrap"><div class="xsdocdecl">Element:
+    <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrc_import"><code class="literal">&lt;import&gt;</code></a></div><div class="xsdoc">External type import statement. This statement imports all definitions from the specified type into the current one, so you can use them without explicit type qualifier.</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">type</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="http://www.w3.org/TR/xmlschema-2#NCName" target="_top"><code class="literal">xs:NCName</code></a></div></div>
+
+For instance, you can write
+<pre class="source">
+  &lt;import type='def'/&gt;
+</pre>
+to import all definitions from the 'def' type. Note, that if several
+imported types have some identical local names, they are resolved in
+order of import statements, i.e. the first one is used.
+
+
+
+</div></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="schemesyntax"/>3. Scheme syntax</h2></div></div></div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Scheme is a generic structure of the HRC language to define syntax of programming
+languages. Every scheme contains various syntax elements, matched or not matched
+as text analysis
+goes on. For example, a scheme for "C++" language contains different keywords,
+strings, numbers, comments etc. The scheme is defined by <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.scheme">&lt;scheme&gt;</a>
+element.
+</div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Scheme alone is not very useful for analysis. It is much more
+convenient to think about text of a language to be highlighted in terms of
+<span xmlns="http://www.w3.org/1999/xhtml" class="strong"><strong>regions</strong></span>. When schema matches a piece of text it
+can assign various parts of this text to different regions.
+Each <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.region">&lt;region&gt;</a> defines some meaningful part of the syntax.
+This part or region always has a name and sometimes a reference to its parent
+region (if any). When parsed, source text is described as a set of these regions
+with specified positions and lengths.
+
+
+</div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Next stage of the text processing associates each region with some handler.
+A handler, for example, can assign color and font style information to
+each of the regions or apply other operations to these structures.
+</div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Each region is defined using a <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.region">&lt;region&gt;</a> element:
+<a xmlns="http://www.w3.org/1999/xhtml" id="ref.hrc.region"/><div class="xsdocwrap"><div class="xsdocdecl">Element:
+    <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrc_region"><code class="literal">&lt;region&gt;</code></a></div><div class="xsdoc">Definition of basic syntax region - text range with assigned syntax meaning. Later, these regions can be mapped into required color information and displayed on screen.</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">name</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="http://www.w3.org/TR/xmlschema-2#NCName" target="_top"><code class="literal">xs:NCName</code></a></div><div class="xsdoc">HRC Region name.</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">parent</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrc_QName"><code class="literal">QName</code></a></div><div class="xsdoc">Region's parent reference. If region has parent, its properties can be inherited from this one. Also region inheritance creates tree structure of HRC Regions.</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">description</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="http://www.w3.org/TR/xmlschema-2#string" target="_top"><code class="literal">xs:string</code></a></div><div class="xsdoc">Optional description, used to represent region's purpose and to show it to user in convenient and friendly way.</div></div>
+</div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+During parsing process each element in a scheme not only creates one or more
+syntax <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.region">&lt;region&gt;</a>s used to highlight parsed text. Resulting information
+also contains a recursive scheme tree showing overall text structure.
+</div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Each type may define as many schemes as needed provided that all their names are
+unique within the type. Scheme is defined using <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.scheme">&lt;scheme&gt;</a> element:
+
+<a xmlns="http://www.w3.org/1999/xhtml" id="ref.hrc.scheme"/><div class="xsdocwrap"><div class="xsdocdecl">Element:
+    <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrc_scheme"><code class="literal">&lt;scheme&gt;</code></a></div><div class="xsdoc">HRC scheme is a basic unit, which represents some fixed set of lexemes, tokens and syntax regions (lexical context). Each time at any position in the text only one schema is active. Its content is applied to the current text position. When the text parsing process starts, the scheme is used whose name equals the name of the corresponding type (the base scheme of the type).</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">name</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="http://www.w3.org/TR/xmlschema-2#NCName" target="_top"><code class="literal">xs:NCName</code></a></div><div class="xsdoc">HRC Scheme name. Unique in this type scope.</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">if</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="http://www.w3.org/TR/xmlschema-2#NCName" target="_top"><code class="literal">xs:NCName</code></a></div><div class="xsdoc">Load and use this scheme's content only if parameter, to which references this attribute is truth. In other case this scheme is used as an empty one.</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">unless</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="http://www.w3.org/TR/xmlschema-2#NCName" target="_top"><code class="literal">xs:NCName</code></a></div><div class="xsdoc">Load and use this scheme's content only if parameter, to which references this attribute is not truth. In other case this scheme is used as an empty one.</div><div class="xsdocdecl">Content:</div><div class="xsdochead">Element:
+   <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.annotation"><code class="literal">annotation</code></a></div><div class="xsdoc">Defines formal documentation for the HRC language elements.</div><div class="xsdochead">Element:
+   <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.regexp"><code class="literal">regexp</code></a></div><div class="xsdoc">Regular Expression token.</div><div class="xsdochead">Element:
+   <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.block"><code class="literal">block</code></a></div><div class="xsdoc">Context switch operator.</div><div class="xsdochead">Element:
+   <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.keywords"><code class="literal">keywords</code></a></div><div class="xsdoc">List of tokens with equal properties.</div><div class="xsdochead">Element:
+   <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.inherit"><code class="literal">inherit</code></a></div><div class="xsdoc">Scheme inheritance construction.</div></div>
+
+Every type is required to have one scheme called <span xmlns="http://www.w3.org/1999/xhtml" class="strong"><strong>"base scheme"</strong></span>
+which is used as an entry point for parsing process of the type. Base scheme is
+named after its type, i.e. local name of the scheme is equal to the name
+of the type. Only internal types defined with <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.package">&lt;package&gt;</a> element can
+ignore this requirement because they are never used at the top level.
+
+<div xmlns="http://www.w3.org/1999/xhtml" class="example"><a id="example.hrc.type"/><p class="title"><b>Example 4. Sample type definition</b></p><div class="example-contents"><pre xmlns="" class="source">
+  &lt;type name="somelang"&gt;
+    &lt;region name="Keyword" description="This language's keyword"/&gt;
+    &lt;scheme name="somelang"&gt;
+      &lt;keywords region="Keyword"&gt;
+        &lt;word name='word1'/&gt;&lt;word name='word2'/&gt;
+        &lt;word name='otherkeyword'/&gt;
+      &lt;/keywords&gt;
+      &lt;regexp match="/other(keyword)?/i" region="Keyword"/&gt;
+    &lt;/scheme&gt;
+  &lt;/type&gt;
+</pre></div></div><br xmlns="http://www.w3.org/1999/xhtml" class="example-break"/>
+
+</div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Scheme element may contain <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>if/unless</em></span> attributes to customize
+parsing process according to contents of <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.parameters">&lt;parameters&gt;</a> definitions
+in the type of the schema. Parameters can be flexibly changed at runtime by the
+means of Colorer API. This allows customizing load process and suggesting
+various language profiles to be chosen by user.
+
+
+</div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+The following sections describe different types of syntax elements,
+available in the HRC language.
+</div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a id="schemesyntax.keywords"/>3.1. Keyword lists</h3></div></div></div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+<a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.keywords">&lt;keywords&gt;</a> is the most simple HRC element used to quickly define
+words with similar properties and highlight them in a text.
+<a xmlns="http://www.w3.org/1999/xhtml" id="ref.hrc.keywords"/><div class="xsdocwrap"><div class="xsdocdecl">Element:
+    <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrc_keywords"><code class="literal">&lt;keywords&gt;</code></a></div><div class="xsdoc">List of tokens with equal properties. Keywords, symbols and so on... These lists are used to make processing of many tokens faster, when it isn't required to use RE to define syntax tokens.</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">ignorecase</code>, default:
+     <code xmlns="http://www.w3.org/1999/xhtml" class="literal">yes</code></div><div class="xsdoc">Match this list of tokens with case sensitive or no.</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">region</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrc_QName"><code class="literal">QName</code></a></div><div class="xsdoc">Region, assigned to this list of tokens. Each token can define its custom region.</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">priority</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrc_priority"><code class="literal">priority</code></a>, default:
+     <code xmlns="http://www.w3.org/1999/xhtml" class="literal">low</code></div><div class="xsdoc">Priority of any token can be normal and low.</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">worddiv</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrc_REworddiv"><code class="literal">REworddiv</code></a></div><div class="xsdoc">Class of characters, used to search words edges.</div><div class="xsdocdecl">Content:</div><div class="xsdochead">Element:
+   <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.word"><code class="literal">word</code></a></div><div class="xsdoc">Keyword tokens - use specified word edges.</div><div class="xsdochead">Element:
+   <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.symb"><code class="literal">symb</code></a></div><div class="xsdoc">Symbol tokens - ignores specified word edges.</div></div>
+<a xmlns="http://www.w3.org/1999/xhtml" id="ref.hrc.word"/><div class="xsdocwrap"><div class="xsdocdecl">Element:
+    <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrc_word"><code class="literal">&lt;word&gt;</code></a></div><div class="xsdoc">Keyword tokens - use specified word edges.</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">name</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="http://www.w3.org/TR/xmlschema-2#string" target="_top"><code class="literal">xs:string</code></a></div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">region</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrc_QName"><code class="literal">QName</code></a></div><div class="xsdoc">A pair of type name and valid XML name.</div></div>
+<a xmlns="http://www.w3.org/1999/xhtml" id="ref.hrc.symb"/><div class="xsdocwrap"><div class="xsdocdecl">Element:
+    <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrc_symb"><code class="literal">&lt;symb&gt;</code></a></div><div class="xsdoc">Symbol tokens - ignores specified word edges.</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">name</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="http://www.w3.org/TR/xmlschema-2#string" target="_top"><code class="literal">xs:string</code></a></div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">region</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrc_QName"><code class="literal">QName</code></a></div><div class="xsdoc">A pair of type name and valid XML name.</div></div>
+</div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Each element in the list may assign its own region or use region of its parent
+<a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.keywords">&lt;keywords&gt;</a> element. Symbols never check surrounding characters,
+while words match only if surrounded by not-word symbols. These word delimiters can be
+redefined with <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>worddiv</em></span> attribute of <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.keywords">&lt;keywords&gt;</a>.
+</div></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a id="schemesyntax.re"/>3.2. Regular Expressions</h3></div></div></div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Regular expression rules is a powerful and flexible way to define custom
+syntax structures. Each RE token can be used to create several different syntax
+regions (up to 16). Keep in mind, however, that the scope of every RE in Colorer
+is limited to one line (the only exception is <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.firstline">&lt;firstline&gt;</a> element
+matched against several lines to detect file type).
+</div><a id="ref.hrc.regexp"/><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="xsdocwrap"><div class="xsdocdecl">Element:
+    <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrc_regexp"><code class="literal">&lt;regexp&gt;</code></a></div><div class="xsdoc">Regular Expression token.</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">region</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrc_QName"><code class="literal">QName</code></a></div><div class="xsdoc">A pair of type name and valid XML name.</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">priority</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrc_priority"><code class="literal">priority</code></a>, default:
+     <code xmlns="http://www.w3.org/1999/xhtml" class="literal">normal</code></div><div class="xsdoc">Priority of any token can be normal and low.</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">match</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrc_REstring"><code class="literal">REstring</code></a></div><div class="xsdoc">RE syntax</div></div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Actual RE is contained within <span xmlns="http://www.w3.org/1999/xhtml" class="strong"><strong>match</strong></span> attribute of <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.regexp">&lt;regexp&gt;</a>
+element. Detailed explanation of Colorer-take5 regular expressions is in <a xmlns="http://www.w3.org/1999/xhtml" href="#hrcre" title="A. Regular Expressions syntax">Appendix A, <i>Regular Expressions syntax</i></a>.
+Each <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.regexp">&lt;regexp&gt;</a> can have up to 16 optional attributes named 
+<span xmlns="http://www.w3.org/1999/xhtml" class="strong"><strong>region0, region1, ... regionf</strong></span> where hexadecimal digit
+corresponds to the part of RE surrounded by round brackets counted from left to right. 
+<span xmlns="http://www.w3.org/1999/xhtml" class="strong"><strong>region0</strong></span> means whole sequence matched by RE (this can be changed with
+<span xmlns="http://www.w3.org/1999/xhtml" class="strong"><strong>\m</strong></span> and <span xmlns="http://www.w3.org/1999/xhtml" class="strong"><strong>\M</strong></span> RE metasymbols).
+The value of each attribute is a name of the syntax region used to highlight text. 
+
+Regular Expression can also contain named brackets what explicitly specify corresponding
+syntax region in the form of <span xmlns="http://www.w3.org/1999/xhtml" class="strong"><strong>(?{name} ... )</strong></span>.
+</div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Each RE definition can include references to any predefined sequence of RE code.
+Such references are called <span xmlns="http://www.w3.org/1999/xhtml" class="strong"><strong>entities</strong></span>. Entities are
+defined in <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.type">&lt;type&gt;</a> element and have their own qualified namespace.
+To include entity's value into RE, special syntax of <span xmlns="http://www.w3.org/1999/xhtml" class="strong"><strong>%entityname;</strong></span> is used.
+</div><a id="ref.hrc.entity"/><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="xsdocwrap"><div class="xsdocdecl">Element:
+    <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrc_entity"><code class="literal">&lt;entity&gt;</code></a></div><div class="xsdoc">HRC Entity definition. Entities are some form of macro-definitions, they lately can be used in regular expressions syntax to make them simpler. Each entity consists of Entity name and Entity content, which would be substituted into regular expression, when parser finds entity reference. Each entity can be referenced with %entityname; syntax.</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">name</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="http://www.w3.org/TR/xmlschema-2#NCName" target="_top"><code class="literal">xs:NCName</code></a></div><div class="xsdoc">HRC Entity name.</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">value</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrc_REentity"><code class="literal">REentity</code></a></div><div class="xsdoc">HRC Entity value, used to substitute entity in RE string.</div></div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Each RE has a priority attribute (by default its value is <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>normal</em></span>).
+Priority is mainly used to detect errors when closing matching region. When everything within
+the region is already matched and parser needs to close the block, it applies rule to
+match closing sequence. If match fails then rule with <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>low</em></span>
+priority within the block is tested. This is explained in <a xmlns="http://www.w3.org/1999/xhtml" href="#schemesyntax.boundaries" title="3.4. Scheme boundaries and priority">Section 3.4, “Scheme boundaries and priority”</a>
+</div></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a id="schemesyntax.contextswitch"/>3.3. Block context switch</h3></div></div></div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Regular expressions are very powerful, but some complex language constructions
+still can not be described with their help. For example, syntax elements that
+allow recursion, i.e. braces inside braces that can be wrapped into each other
+multiple number of times. There is also a limitation of Colorer's RE parser
+that it can not see beyond a single line of text. 
+</div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+To define more complex syntax structures and context-free grammar constructions
+HRC has a special element named <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.block">&lt;block&gt;</a>.
+
+<a xmlns="http://www.w3.org/1999/xhtml" id="ref.hrc.block"/><div class="xsdocwrap"><div class="xsdocdecl">Element:
+    <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrc_block"><code class="literal">&lt;block&gt;</code></a></div><div class="xsdoc">Context switch operator. Used to switch currently used context into the specified one. Context is switched, if RE pattern, placed in 'start' attribute, is matches. Switched context is closed, when parser finds match of the 'end' RE.</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">start</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrc_REstring"><code class="literal">REstring</code></a></div><div class="xsdoc">Regular Expression</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">end</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrc_REstring"><code class="literal">REstring</code></a></div><div class="xsdoc">Regular Expression</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">scheme</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrc_QName"><code class="literal">QName</code></a></div><div class="xsdoc">A pair of type name and valid XML name.</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">priority</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrc_priority"><code class="literal">priority</code></a>, default:
+     <code xmlns="http://www.w3.org/1999/xhtml" class="literal">normal</code></div><div class="xsdoc">Priority of any token can be normal and low.</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">content-priority</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrc_priority"><code class="literal">priority</code></a>, default:
+     <code xmlns="http://www.w3.org/1999/xhtml" class="literal">normal</code></div><div class="xsdoc">Priority of any token can be normal and low.</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">inner-region</code>, default:
+     <code xmlns="http://www.w3.org/1999/xhtml" class="literal">no</code></div><div class="xsdoc">If set to "yes" then the region of referenced scheme does not include text matched by start/end attributes. I.e. all the block's regions are located outside of the scheme region. By default ("no" value) scheme region wraps start/end tokens of the block and defines background for their own regions.</div><div class="xsdocdecl">Content:</div><div class="xsdochead">Element:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">start</code>, type:
+      <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.blockInner"><code class="literal">blockInner</code></a></div><div class="xsdoc">Alternative style of RE definition.</div><div class="xsdochead">Element:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">end</code>, type:
+      <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.blockInner"><code class="literal">blockInner</code></a></div><div class="xsdoc">Alternative style of RE definition.</div></div>
+
+<a xmlns="http://www.w3.org/1999/xhtml" id="ref.hrc.blockInner"/><div class="xsdocwrap"><div class="xsdocdecl">Element:
+    <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrc_blockInner"><code class="literal">&lt;blockInner&gt;</code></a></div><div class="xsdoc">Alternative style of RE definition. Could be used, when RE is very complex and it is easier to use character (or CDATA) sections to define it.</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">match</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrc_REstring"><code class="literal">REstring</code></a></div><div class="xsdoc">RE syntax</div></div>
+
+Each block has <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>&lt;start&gt;</em></span> and <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>&lt;end&gt;</em></span>
+tags, each with the RE syntax already described.
+Everything contained within these two marks will be highlighted
+as a syntax of some other <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.scheme">&lt;scheme&gt;</a>, also pointed by this
+element's attribute. It is also possible to paint the portions of these matched
+tags. Much like <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.regexp">&lt;regexp&gt;</a> element - <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.block">&lt;block&gt;</a> can contain
+up to 32 region attributes - <span xmlns="http://www.w3.org/1999/xhtml" class="strong"><strong>region, region00, region01, ... region1f</strong></span>.
+<span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>region0x</em></span> corresponds to round brackets of <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>&lt;start&gt;</em></span> tag,
+<span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>region1x</em></span> is for <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>&lt;end&gt;</em></span> tag brackets and <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>region</em></span> attribute
+contains a name of region to paint the whole block. So it is not necessary to define scheme for
+assigning region to the whole block, but since scheme is a required attribute there is a stub 
+empty scheme you can use named <span xmlns="http://www.w3.org/1999/xhtml" class="strong"><strong>def:empty</strong></span>
+</div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Using <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.block">&lt;block&gt;</a> element you can switch context
+between different highlighting schemes. This way it is possible to define
+a great number of different syntax combinations.
+</div></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a id="schemesyntax.boundaries"/>3.4. Scheme boundaries and priority</h3></div></div></div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Both regular expressions and block'ed scheme switches work in the same scheme context,
+and tested against text in the order they defined in HRC.
+If current text is matched by several rules, the first rule wins. 
+After successful RE match parse position is increased by
+the length of that RE. By default the width is calculated from the first matched symbol till the last
+inclusive. However it is possible to adjust these boundaries and shift parse position.
+This is done with special <span xmlns="http://www.w3.org/1999/xhtml" class="strong"><strong>\m</strong></span>
+(redefines RE start) and <span xmlns="http://www.w3.org/1999/xhtml" class="strong"><strong>\M</strong></span> (redefines RE end) metasymbols.
+It becomes possible to define overlapped elements, where parsing of the following element starts
+somewhere in the middle of the previous.
+</div><div class="section" lang="en"><div class="titlepage"><div><div><h4 class="title"><a id="priority"/>3.4.1. priority</h4></div></div></div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Sometimes a conflict occurs between the rule that closes block
+(i.e. <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>&lt;end&gt;</em></span> tag of the <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.block">&lt;block&gt;</a> element)
+and a matching rule inside this block. By default the rule inside block always
+wins. But sometimes rule that closes block should take precedence. For this
+purpose HRC defines <span xmlns="http://www.w3.org/1999/xhtml" class="strong"><strong>priority</strong></span>
+attribute for <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.regexp">&lt;regexp&gt;</a> and <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.block">&lt;block&gt;</a> elements.
+Its default value is <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>"normal"</em></span>, but if it is changed to
+<span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>"low"</em></span> then Colorer does not take into account this element
+when resolving conflicts upon exit from inner scheme. I.e. in case of conflict
+if inner element has lowered priority then <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>&lt;end&gt;</em></span> tag
+of the outer <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.block">&lt;block&gt;</a> element is used. 
+In case of nested <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.block">&lt;block&gt;</a> tag, <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>priority</em></span> attribute
+affects only conflicts with its <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>&lt;start&gt;</em></span> tag.
+<span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>&lt;end&gt;</em></span> tag of nested block will always take precedence
+over the similar <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>&lt;end&gt;</em></span> tag of enclosing block.
+</div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+For regular expressions with lowered priority EOL metacharacter
+<span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>$</em></span> in case of conflict matches the end of parent block area.
+This allows to use low <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>priority</em></span> to highlight syntax errors.
+
+</div></div><div class="section" lang="en"><div class="titlepage"><div><div><h4 class="title"><a id="content-priority"/>3.4.2. content-priority</h4></div></div></div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Sometimes it is required to dynamically define priority of a child scheme within a block.
+
+With <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>priority</em></span> attribute it is impossible to change element's priority
+depending on a context from where the element is called, because the element will
+always have the priority specified. Instead <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>content-priority</em></span> attribute of a
+<a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.block">&lt;block&gt;</a> element is used to change priority for all elements of referenced
+scheme.
+</div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+When changed into <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>low</em></span> it causes all the elements of that scheme
+to change their priority to <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>low</em></span> no matter what is the value of their
+particular <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>priority</em></span> attribute. 
+</div></div><div class="section" lang="en"><div class="titlepage"><div><div><h4 class="title"><a id="inner-region"/>3.4.3. inner-region</h4></div></div></div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+When defining scheme context switch it is possible to set a default region
+for content of called scheme through <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>region</em></span> attribute of
+<a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.block">&lt;block&gt;</a> element. The region will be used as a "background" for
+all other regions defined in that scheme.
+It is possible to manage boundaries of this region.
+Normally the whole scheme's content together with contents of <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>&lt;start&gt;</em></span>
+and <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>&lt;end&gt;</em></span> tokens is included in this default region.
+Region starts where <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>&lt;start&gt;</em></span> token starts, and
+ends where <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>&lt;end&gt;</em></span> token ends.
+</div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Sometimes it is desirable to change this behaviour and handle <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>&lt;start&gt;</em></span>
+and <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>&lt;end&gt;</em></span> tokens (and all the regions they may define) outside of
+default region of the called scheme. This could be achieved by setting <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>inner-region</em></span>
+attribute to <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>"yes"</em></span> value.
+When set it tells parser to exclude start/end tokens from default region of called scheme
+by changing default region boundaries to begin at
+the end of <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>&lt;start&gt;</em></span> token and finish just before <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>&lt;end&gt;</em></span>
+token area.
+</div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Inner region feature could be used to implement special wrapped areas and in general
+can affect special background color treatment.
+
+</div></div></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="interscheme"/>4. Inter-scheme links</h2></div></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a id="interscheme.inheritance"/>4.1. Inheritance</h3></div></div></div><a id="ref.hrc.inherit"/><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="xsdocwrap"><div class="xsdocdecl">Element:
+    <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrc_inherit"><code class="literal">&lt;inherit&gt;</code></a></div><div class="xsdoc">Scheme inheritance construction. If one scheme is inherited in another, then the latter scheme takes all the definitions from the former, as it was included directly in place of inherit operator. One scheme can't inherit another, if that scheme is already makes inheritance (even indirect) of the first one.</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">scheme</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrc_QName"><code class="literal">QName</code></a></div><div class="xsdoc">Inherited scheme name.</div><div class="xsdocdecl">Content:</div><div class="xsdochead">Element:
+   <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.virtual"><code class="literal">virtual</code></a></div><div class="xsdoc">Inheritance substitution element.</div></div><a id="ref.hrc.virtual"/><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="xsdocwrap"><div class="xsdocdecl">Element:
+    <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrc_virtual"><code class="literal">&lt;virtual&gt;</code></a></div><div class="xsdoc">Inheritance substitution element. While inheriting one scheme in another, it is possible to redefine inner inherited schemes with some others. This can be used to change inherited language behavior.</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">scheme</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrc_QName"><code class="literal">QName</code></a></div><div class="xsdoc">Redefined scheme.</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">subst-scheme</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrc_QName"><code class="literal">QName</code></a></div><div class="xsdoc">Scheme to use instead redefined one.</div></div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+</div></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a id="interscheme.substitution"/>4.2. Scheme substitutions</h3></div></div></div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p"/></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="coding.std"/>5. HRC Language Features and Conventions</h2></div></div></div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Although HRC itself could be used in an arbitrary way, Colorer-take5
+library has a number of coding and naming conventions for consistency
+to make maintenance and expansion of HRC library easier. Features are
+implemented using special conventions Colorer library knows about and
+does extra processing.
+</div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a id="coding.std.naming"/>5.1. Elements naming</h3></div></div></div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Colorer names are case sensitive. All regions in Colorer-take5 HRC database are named
+with capital letter, each name-part also starts with capital
+letter. For instance: <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>StringQuote</em></span>. Any separate type or
+package is named in lower case and shortened if possible. So, the full name
+of a region is written as <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>def:StringQuote</em></span>.
+</div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Scheme names are context dependent and could be used with words in either case.
+Dash or Dot delimiter makes them more readable:
+<span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>&lt;scheme name="Comment.content"&gt;</em></span> for instance.
+</div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+All HRC files are named in lower-case with
+possible Dash or Dot delimiters. External XML entities should be used
+to split complex HRC files in parts that simplifies generation of automatically
+derived HRC schemes. Entity files carry double <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>ent.hrc</em></span>
+extensions to distinguish them from ordinary HRC schemes.
+</div></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a id="coding.std.spec"/>5.2. Default package feature</h3></div></div></div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Colorer-take5 defines a basic set of common syntax regions through
+special package named <span xmlns="http://www.w3.org/1999/xhtml" class="strong"><strong>def</strong></span>. Default package simplifies
+support of HRC database and separates parse content and its presentation. It is located in
+<span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>hrc/lib/default.hrc</em></span>.
+The general purpose of this file is to define a basic set of syntax
+regions. These regions already have assigned colors via universal
+HRD color mappings bundled with Colorer library. All other HRC regions
+should be inherited from this set to flexibly define HRD color rules and
+unify them across all supported syntaxes and languages.
+Any HRC package can explicitly import and use them or define its own
+syntax regions, derived from the defaults.
+</div><div class="section" lang="en"><div class="titlepage"><div><div><h4 class="title"><a id="coding.std.spec.pairs"/>5.2.1. Pair construction matching</h4></div></div></div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+In addition to coloring rules, Colorer-take5 library uses some naming conventions to
+provide such features as pair matching, error lists and file structure outlines.
+Conventions include several special regions. Paired constructions 
+are defined using 
+<span xmlns="http://www.w3.org/1999/xhtml" class="strong"><strong>def:PairStart</strong></span> and <span xmlns="http://www.w3.org/1999/xhtml" class="strong"><strong>def:PairEnd</strong></span>.
+Parsing layout for these regions should be properly enwrapped in a valid recursive sequence.
+Using this information Colorer-take5 library provides user with
+ability to jump over text blocks in target language and highlight them during
+editing process.
+
+</div></div><div class="section" lang="en"><div class="titlepage"><div><div><h4 class="title"><a id="coding.std.spec.outline"/>5.2.2. Outliner construction</h4></div></div></div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Another feature Colorer-take5 library provides is a tree of valuable syntax tokens 
+in a text. The tree allows to quickly switch among these tokens in editor.
+Tokens may represent programming language's functions, procedures,
+or any other logical structures of the text. During parsing process these constructions are collected
+into a special outline container, which can present them to user in realtime or by request.
+Colorer-take5 editor implements two basic forms of outliner: functions and errors list.
+Any HRC scheme may define an element with region equal to or derived from
+<span xmlns="http://www.w3.org/1999/xhtml" class="strong"><strong>def:Outlined</strong></span>. All elements with this region are considered to be
+outliner-targeted and are collected during parsing. Outliner may analyse
+parse tree structure to generate tree-like text outliners.
+Moreover, any language can provide special algorithmic support or logic to implement
+parsing for special outlined regions and building valid outline tree.
+For instance EclipseColorer editor evaluates a name of each outlined region and searches
+an icon with such name. If found, it uses this icon to customize outliner window
+items with graphic objects, not only text.
+</div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Outliner can generally be set up against any region type. It works as a kind of filter,
+gathering only required information from parser. This is a way Errors list works,
+where regions derived from <span xmlns="http://www.w3.org/1999/xhtml" class="strong"><strong>def:Error</strong></span> are collected. Every
+HRC language uses this region to mark problems it found while parsing text.
+</div></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a id="coding.rec"/>5.3. Coding Recommendations</h3></div></div></div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+HRC database has a long history, during which the format,
+syntax and meaning of its compounds were changed to reach more logical and formal structure.
+
+As a consequence there still could be some type definitions, which are
+not fully comply with general HRC conventions.
+In general these include invalid names of packages and region/schemes.
+They won't be supported in their current form and will be reworked
+one day to become compliant with other HRC definitions.
+</div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+It may seem a good point to have an <span xmlns="http://www.w3.org/1999/xhtml" class="strong"><strong>import</strong></span> element in HRC,
+which allows to use objects from other package with unqualified names,
+but in general this should not be overused to avoid confusion. It is much more convenient
+to use fully qualified regions and scheme names to explicitly show additional package
+usage/intersections.
+
+</div></div></div><div class="appendix" lang="en"><h2 class="title" style="clear: both"><a id="hrcre"/>A. Regular Expressions syntax</h2><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a id="hrcre.intro"/>1. Introduction</h3></div></div></div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Colorer library and HRC language rely heavily upon regular expressions (RE).
+They allow you to create universal syntax highlighting rules in HRC. The major
+difference from other RE engines is that Colorer RE are all limited to one line
+to make text processing faster.
+</div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Regular expression consists of a set of characters.
+Some of these are simple, and some are special (metacharacters).
+All metacharacters (escapes) are divided into three categories: first - zerolength (words boundaries and so on);
+second - class metacharacters (<span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>\w</em></span>, <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>\s</em></span> <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>.</em></span>);
+and the third - operators.
+RE operators can be applied to a single character,
+to block, enwrapped in brackets or into other operators.
+You can use round brackets to group any sequence of characters.
+Regular expressions in HRC Language are much like Perl regexps in their base variant.
+There are some differences in extended operators.
+</div></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a id="hrcre.syntax"/>2. Syntax</h3></div></div></div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+All regexps must be in slashes <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>/.../</em></span>.
+After the end slash there can be modifiers:
+
+<div xmlns="http://www.w3.org/1999/xhtml" class="itemizedlist"><ul type="disc"><li><span class="emphasis"><em>i</em></span> - ignore symbol case</li><li><span class="emphasis"><em>x</em></span> - ignore direct spaces and crlf (for comfort)</li><li><span class="emphasis"><em>s</em></span> - treat regexp like single line - i.e. make '.' class include \r\n symbols (works only for 
+<a href="#ref.hrc.firstline">&lt;firstline&gt;</a> element) as all other RE can't exceed line boundary</li></ul></div>
+Each symbol in RE is sequentially compared with the target string.
+Everything that doesn't look like metacharacter is a simple character.
+HRC file is also a valid XML file, therefore quotes in attributes of elements
+such as <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.regexp">&lt;regexp&gt;</a> should be escaped with entities 
+<span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>&amp;quot;</em></span> or <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>"</em></span>. Other XML
+entities inside <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.regexp">&lt;regexp&gt;</a> are also expanded and should be escaped
+when needed. For example, to match <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>&amp;amp;</em></span> sequence
+with your rule - use <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>&amp;amp;amp;</em></span> construction.
+</div></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a id="hrcre.meta"/>3. Metacharacters</h3></div></div></div><div class="table"><a id="table.metacharacters"/><p class="title"><b>Table A.1. Metacharacters</b></p><div class="table-contents"><table summary="Metacharacters" border="1"><colgroup><col/><col/></colgroup><tbody><tr><td><span class="emphasis"><em>^</em></span></td><td>Match the beginning of the line</td></tr><tr><td><span class="emphasis"><em>$</em></span></td><td>Match the end of the line</td></tr><tr><td><span class="emphasis"><em>.</em></span></td><td>Match any character (except \r\n)</td></tr><tr><td><span class="emphasis"><em>[...]</em></span></td><td>Match any character in set</td></tr><tr><td><span class="emphasis"><em>[^...]</em></span></td><td>Match any character that is not in set.
+          None of RE operators works here, but you some metacharacters and range operator
+          are possible:
+          <p><span class="emphasis"><em>a-z</em></span> stands for all alphabet chars between a and z,</p>
+          <p><span class="emphasis"><em>[{ASSIGNED}-[{Lu}]-[{Ll}]]</em></span> - unicode classes reference in RE.</p>
+          Additional boolean operations:
+          <p><span class="emphasis"><em>-[]</em></span> - Class subtraction.</p>
+          <p><span class="emphasis"><em>|[]</em></span> - Class intersection.</p>
+          <p>
+          See <a href="http://www.unicode.org/reports/tr18/" target="_top">Unicode RE TR#18</a> for more information.
+          </p>
+          </td></tr><tr><td><span class="emphasis"><em>\#</em></span></td><td>The symbol '#' after slash (except a-z and 1-9)</td></tr><tr><td><span class="emphasis"><em>\b</em></span></td><td>Word break at this point (immediately before or after any word character)</td></tr><tr><td><span class="emphasis"><em>\B</em></span></td><td>No word break at this point</td></tr><tr><td><span class="emphasis"><em>\xHH</em></span>, <span class="emphasis"><em>\x{HHHH}</em></span></td><td><span class="emphasis"><em>HH, HHHH</em></span> - character code (hex)</td></tr><tr><td><span class="emphasis"><em>\n</em></span></td><td>0x10 (lf)</td></tr><tr><td><span class="emphasis"><em>\r</em></span></td><td>0x13 (cr)</td></tr><tr><td><span class="emphasis"><em>\t</em></span></td><td>0x09 (tab)</td></tr><tr><td><span class="emphasis"><em>\s</em></span></td><td>Whitespace character (tab/space/cr/lf)</td></tr><tr><td><span class="emphasis"><em>\S</em></span></td><td>Not whitespace</td></tr><tr><td><span class="emphasis"><em>\w</em></span></td><td>Word symbol (chars, digits, _)</td></tr><tr><td><span class="emphasis"><em>\W</em></span></td><td>Not word symbols</td></tr><tr><td><span class="emphasis"><em>\d</em></span></td><td>Digit</td></tr><tr><td><span class="emphasis"><em>\D</em></span></td><td>Not Digit</td></tr><tr><td><span class="emphasis"><em>\u</em></span></td><td>Uppercase symbol</td></tr><tr><td><span class="emphasis"><em>\l</em></span></td><td>Lowercase symbol</td></tr></tbody></table></div></div><br class="table-break"/></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a id="hrcre.exmeta"/>4. Extended metacharacters</h3></div></div></div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">These metacharacters are incompatible with Perl</div><div class="table"><a id="table.xmetacharacters"/><p class="title"><b>Table A.2. Extended Metacharacters</b></p><div class="table-contents"><table summary="Extended Metacharacters" border="1"><colgroup><col/><col/></colgroup><tbody><tr><td><span class="emphasis"><em>\c</em></span></td><td>Means 'not word' before</td></tr><tr><td><span class="emphasis"><em>\N</em></span></td><td>Reference from inside of regexp to one of its brackets.
+          <span class="emphasis"><em>N</em></span>  - the number of brackets pair.  This operator  works
+          only with non-operator symbols in a bracket.
+
+</td></tr></tbody></table></div></div><br class="table-break"/><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Next operators are only available in Colorer-take5 regexp parser module,
+when it is compiled for Colorer library (means that Colorer regex module can be used separately):
+</div><div class="table"><a id="table.take5metacharacters"/><p class="title"><b>Table A.3. Colorer-take5 Parsing Metacharacters</b></p><div class="table-contents"><table summary="Colorer-take5 Parsing Metacharacters" border="1"><colgroup><col/><col/></colgroup><tbody><tr><td><span class="emphasis"><em>~</em></span></td><td>Matches for the start of parent scheme (end of <span class="emphasis"><em>&lt;start&gt;</em></span> tag).</td></tr><tr><td><span class="emphasis"><em>\m</em></span></td><td>Changes start of regexp</td></tr><tr><td><span class="emphasis"><em>\M</em></span></td><td>Changes end of regexp</td></tr><tr><td><span class="emphasis"><em>\yN \YN \y{name} \Y{name}</em></span></td><td>Link to the external regexp (in <span class="emphasis"><em>&lt;end&gt;</em></span> token to <span class="emphasis"><em>&lt;start&gt;</em></span> token param). N - required bracket pair, name - named bracket.</td></tr></tbody></table></div></div><br class="table-break"/><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+For more information about <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>\m \M</em></span> meaning see
+in <a xmlns="http://www.w3.org/1999/xhtml" href="#schemesyntax.boundaries" title="3.4. Scheme boundaries and priority">Section 3.4, “Scheme boundaries and priority”</a>.
+</div></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a id="hrcre.ops"/>5. Operators</h3></div></div></div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Operators can't be used without some preceding character sequence.
+Each operator must be applied to the appropriate character,
+metacharacter, or their combination enclosed in brackets.
+</div><div class="table"><a id="table.operators"/><p class="title"><b>Table A.4. Operators</b></p><div class="table-contents"><table summary="Operators" border="1"><colgroup><col/><col/></colgroup><tbody><tr><td><span class="emphasis"><em>( )</em></span></td><td>Group and remember characters for later use.</td></tr><tr><td><span class="emphasis"><em>(?{name} )</em></span></td><td>Group and remember characters using named group.</td></tr><tr><td><span class="emphasis"><em>(?{} ) or (?: )</em></span></td><td>Group characters, but don't remember (unnamed group).</td></tr><tr><td><span class="emphasis"><em>(?{} )</em></span></td><td>Group and remember characters using unnamed uncounted group.</td></tr><tr><td><span class="emphasis"><em>|</em></span></td><td>Alternative. Match previous or next pattern.</td></tr><tr><td><span class="emphasis"><em>*</em></span></td><td>Match preceding pattern 0 or more times.</td></tr><tr><td><span class="emphasis"><em>+</em></span></td><td>Match preceding pattern 1 or more times.</td></tr><tr><td><span class="emphasis"><em>?</em></span></td><td>Match preceding pattern 0 or 1 time.</td></tr><tr><td><span class="emphasis"><em>{n}</em></span></td><td>Repeat n times.</td></tr><tr><td><span class="emphasis"><em>{n,}</em></span></td><td>Repeat n or more times.</td></tr><tr><td><span class="emphasis"><em>{n,m}</em></span></td><td>Repeat from n to m times.</td></tr></tbody></table></div></div><br class="table-break"/><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Question sign <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>?</em></span> after operator makes it non-greedy.
+For example <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>*</em></span> operator becomes non-greedy if placing <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>*?</em></span>
+Greedy operator tries to eat as many chars in string as possible. Non-greedy takes minimum.
+</div></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a id="hrcre.exops"/>6. Extended operators</h3></div></div></div><div class="table"><a id="table.xoperators"/><p class="title"><b>Table A.5. Extended Operators</b></p><div class="table-contents"><table summary="Extended Operators" border="1"><colgroup><col/><col/></colgroup><tbody><tr><td><span class="emphasis"><em>?#N</em></span></td><td>Look-behind. N - symbol number to look behind.</td></tr><tr><td><span class="emphasis"><em>?~N</em></span></td><td>Negative look-behind.</td></tr><tr><td><span class="emphasis"><em>?=</em></span></td><td>Look-ahead.</td></tr><tr><td><span class="emphasis"><em>?!</em></span></td><td>Negative Look-ahead.</td></tr></tbody></table></div></div><br class="table-break"/><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Note, that two last operators exist in Perl - in form of <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>(?=foobar)</em></span>.
+But colorer uses syntax <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>(foobar)?=</em></span>
+</div></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a id="hrcre.examples"/>7. Examples</h3></div></div></div><div class="example"><a id="example.hrc.re"/><p class="title"><b>Example A.1. RE examples</b></p><div class="example-contents"><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+
+<div xmlns="http://www.w3.org/1999/xhtml" class="variablelist"><dl><dt><span class="term"><span class="emphasis"><em>/foobar/</em></span></span></dt><dd><div xmlns="" class="p">will match "foobar", "foobar barfoo"</div></dd><dt><span class="term"><span class="emphasis"><em>/ FOO bar /ix</em></span></span></dt><dd><div xmlns="" class="p">will match "foobar" "FOOBAR" "foobar and two other foos"</div></dd><dt><span class="term"><span class="emphasis"><em>/(foo)?bar/</em></span></span></dt><dd><div xmlns="" class="p">will match "foobar", "bar"</div></dd><dt><span class="term"><span class="emphasis"><em>/^foobar$/</em></span></span></dt><dd><div xmlns="" class="p">will match _only_ with "foobar"</div></dd><dt><span class="term"><span class="emphasis"><em>/([\d\.])+/</em></span></span></dt><dd><div xmlns="" class="p">will match any number</div></dd><dt><span class="term"><span class="emphasis"><em>/(foo|bar)+/</em></span></span></dt><dd><div xmlns="" class="p">will match "foofoofoobarfoobar", "bar"</div></dd><dt><span class="term"><span class="emphasis"><em>/f[obar]+r/</em></span></span></dt><dd><div xmlns="" class="p">will match "foobar", "for", "far"</div></dd></dl></div>
+
+</div></div></div><br class="example-break"/></div></div><div class="appendix" lang="en"><h2 class="title" style="clear: both"><a id="catalog.xml"/>B. Format of catalog.xml file</h2><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+
+Catalog for Colorer Library resources is a convenient way to
+centralize maintenance and development of all Colorer features.
+
+This catalog is stored in <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>catalog.xml</em></span> file
+and mapped into the ParserFactory class.
+
+Catalog contains information about all installed HRC modules,
+error logging configuration and listing of available HRD sets.
+
+</div><a id="ref.catalog.catalog"/><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="xsdocwrap"><div class="xsdocdecl">Element:
+    <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_catalog_catalog"><code class="literal">&lt;catalog&gt;</code></a></div><div class="xsdoc">Describes all available Colorer Library resources.</div><div class="xsdocdecl">Content:</div><div class="xsdochead">Element:
+   <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.catalog.hrc-sets"><code class="literal">hrc-sets</code></a></div><div class="xsdoc">Lists all installed root locations of HRC codes.</div><div class="xsdochead">Element:
+   <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.catalog.hrd-sets"><code class="literal">hrd-sets</code></a></div><div class="xsdoc">Lists all available HRD sets.</div></div><a id="ref.catalog.hrc-sets"/><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="xsdocwrap"><div class="xsdocdecl">Element:
+    <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_catalog_hrc-sets"><code class="literal">&lt;hrc-sets&gt;</code></a></div><div class="xsdoc">Lists all installed root locations of HRC codes. These locations are loaded when HRC bases are created.</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">log-location</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="http://www.w3.org/TR/xmlschema-2#string" target="_top"><code class="literal">xs:string</code></a></div><div class="xsdoc">Path to the default library log file. If missed, there is no logging.</div><div class="xsdocdecl">Content:</div><div class="xsdochead">Element:
+   <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.catalog.location"><code class="literal">location</code></a></div><div class="xsdoc">Single resource location.</div></div><a id="ref.catalog.hrd-sets"/><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="xsdocwrap"><div class="xsdocdecl">Element:
+    <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_catalog_hrd-sets"><code class="literal">&lt;hrd-sets&gt;</code></a></div><div class="xsdoc">Lists all available HRD sets. Each HRD Entry describes single color scheme, used to represent colored text. Note, that one Entry</div><div class="xsdocdecl">Content:</div><div class="xsdochead">Element:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">hrd</code>, type:
+      <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.catalog.hrd-entry"><code class="literal">hrd-entry</code></a></div><div class="xsdoc">Describes one HRD properties set.</div></div><a id="ref.catalog.hrd-entry"/><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="xsdocwrap"><div class="xsdocdecl">Element:
+    <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_catalog_hrd-entry"><code class="literal">&lt;hrd-entry&gt;</code></a></div><div class="xsdoc">Describes one HRD properties set.</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">class</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="http://www.w3.org/TR/xmlschema-2#NMTOKEN" target="_top"><code class="literal">xs:NMTOKEN</code></a></div><div class="xsdoc">HRD class. Currently available 'console', 'rgb' and 'text' classes.</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">name</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="http://www.w3.org/TR/xmlschema-2#NMTOKEN" target="_top"><code class="literal">xs:NMTOKEN</code></a></div><div class="xsdoc">Internal name of this set, used to referring from executable codes.</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">description</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="http://www.w3.org/TR/xmlschema-2#string" target="_top"><code class="literal">xs:string</code></a></div><div class="xsdoc">User-friendly description of this HRD set.</div><div class="xsdocdecl">Content:</div><div class="xsdochead">Element:
+   <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.catalog.location"><code class="literal">location</code></a></div><div class="xsdoc">Single resource location.</div></div><a id="ref.catalog.location"/><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="xsdocwrap"><div class="xsdocdecl">Element:
+    <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_catalog_location"><code class="literal">&lt;location&gt;</code></a></div><div class="xsdoc">Single resource location. Path can be relative to the catalog location, or absolute URI with or without URI schema specification.</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">link</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="http://www.w3.org/TR/xmlschema-2#string" target="_top"><code class="literal">xs:string</code></a></div></div><pre xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="source">&lt;<span class="xs_elem">schema</span> <span class="xs_attr">targetNamespace</span>="<span class="xs_attrval">http://colorer.sf.net/2003/catalog</span>" <span class="xs_attr">elementFormDefault</span>="<span class="xs_attrval">qualified</span>"
+  xmlns="http://www.w3.org/2001/XMLSchema"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+
+  &lt;<span class="xs_elem">element</span> <span class="xs_attr">name</span>="<span class="xs_attrval">catalog</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">catalog</span>"/&gt;
+
+<a xmlns="http://www.w3.org/1999/xhtml" id="xsid_catalog_catalog"/>  &lt;<span class="xs_elem">complexType</span> <span class="xs_attr">name</span>="<span class="xs_attrval"><a href="#ref.catalog.catalog">catalog</a></span>"&gt;
+    &lt;<span class="xs_elem">sequence</span>&gt;
+      &lt;<span class="xs_elem">element</span> <span class="xs_attr">name</span>="<span class="xs_attrval">hrc-sets</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">hrc-sets</span>"/&gt;
+      &lt;<span class="xs_elem">element</span> <span class="xs_attr">name</span>="<span class="xs_attrval">hrd-sets</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">hrd-sets</span>"/&gt;
+    &lt;/<span class="xs_elem">sequence</span>&gt;
+  &lt;/<span class="xs_elem">complexType</span>&gt;
+
+<a xmlns="http://www.w3.org/1999/xhtml" id="xsid_catalog_hrc-sets"/>  &lt;<span class="xs_elem">complexType</span> <span class="xs_attr">name</span>="<span class="xs_attrval"><a href="#ref.catalog.hrc-sets">hrc-sets</a></span>"&gt;
+    &lt;<span class="xs_elem">sequence</span>&gt;
+      &lt;<span class="xs_elem">element</span> <span class="xs_attr">name</span>="<span class="xs_attrval">location</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">location</span>" <span class="xs_attr">maxOccurs</span>="<span class="xs_attrval">unbounded</span>"/&gt;
+    &lt;/<span class="xs_elem">sequence</span>&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">log-location</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">xs:string</span>"&gt;
+    &lt;/<span class="xs_elem">attribute</span>&gt;
+  &lt;/<span class="xs_elem">complexType</span>&gt;
+
+<a xmlns="http://www.w3.org/1999/xhtml" id="xsid_catalog_hrd-sets"/>  &lt;<span class="xs_elem">complexType</span> <span class="xs_attr">name</span>="<span class="xs_attrval"><a href="#ref.catalog.hrd-sets">hrd-sets</a></span>"&gt;
+    &lt;<span class="xs_elem">sequence</span>&gt;
+      &lt;<span class="xs_elem">element</span> <span class="xs_attr">name</span>="<span class="xs_attrval">hrd</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">hrd-entry</span>" <span class="xs_attr">minOccurs</span>="<span class="xs_attrval">0</span>" <span class="xs_attr">maxOccurs</span>="<span class="xs_attrval">unbounded</span>"/&gt;
+    &lt;/<span class="xs_elem">sequence</span>&gt;
+  &lt;/<span class="xs_elem">complexType</span>&gt;
+
+<a xmlns="http://www.w3.org/1999/xhtml" id="xsid_catalog_hrd-entry"/>  &lt;<span class="xs_elem">complexType</span> <span class="xs_attr">name</span>="<span class="xs_attrval"><a href="#ref.catalog.hrd-entry">hrd-entry</a></span>"&gt;
+    &lt;<span class="xs_elem">sequence</span>&gt;
+      &lt;<span class="xs_elem">element</span> <span class="xs_attr">name</span>="<span class="xs_attrval">location</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">location</span>" <span class="xs_attr">maxOccurs</span>="<span class="xs_attrval">unbounded</span>"/&gt;
+    &lt;/<span class="xs_elem">sequence</span>&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">class</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">xs:NMTOKEN</span>" <span class="xs_attr">use</span>="<span class="xs_attrval">required</span>"&gt;
+    &lt;/<span class="xs_elem">attribute</span>&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">name</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">xs:NMTOKEN</span>" <span class="xs_attr">use</span>="<span class="xs_attrval">required</span>"&gt;
+    &lt;/<span class="xs_elem">attribute</span>&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">description</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">xs:string</span>"&gt;
+    &lt;/<span class="xs_elem">attribute</span>&gt;
+  &lt;/<span class="xs_elem">complexType</span>&gt;
+
+<a xmlns="http://www.w3.org/1999/xhtml" id="xsid_catalog_location"/>  &lt;<span class="xs_elem">complexType</span> <span class="xs_attr">name</span>="<span class="xs_attrval"><a href="#ref.catalog.location">location</a></span>"&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">link</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">xs:string</span>" <span class="xs_attr">use</span>="<span class="xs_attrval">required</span>"/&gt;
+  &lt;/<span class="xs_elem">complexType</span>&gt;
+&lt;/<span class="xs_elem">schema</span>&gt;
+</pre><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+</div></div><div class="appendix" lang="en"><h2 class="title" style="clear: both"><a id="hrd"/>C. Format of HRD color schemes</h2><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+
+<abbr title="Highlighting Resource Descriptions">HRD</abbr>
+files used to assign some editor-specific properties to each HRC Region.
+Usually these include color and style information.
+HRD file is a list of entries each describing one HRC Region.
+
+</div><a id="ref.hrd.hrd"/><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="xsdocwrap"><div class="xsdocdecl">Element:
+    <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrd_hrd"><code class="literal">&lt;hrd&gt;</code></a></div><div class="xsdoc">List of assigns between regions and their external properties. These properties commonly include text decoration parameters, such as color, style, font and so on... Global color layering model can be chosen by the target application, depending on its text presentation style, features and requirements. In general, all transparent colors inherit color value from its parent schema fill color. If the current schema is a top-level, default fore- and back-ground colors are used. Default Colors can be stored in HRD, using standard default region 'def:Text', or can be requested by application from the GUI environment. Note that color properties are requested from Region's parent (in HRC structure) if this region is not declared in HRD. However if region was declared but misses some properties, they are requested from underlying schema fill region which is determined in runtime.</div><div class="xsdocdecl">Content:</div><div class="xsdochead">Element:
+   <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrd.documentation"><code class="literal">documentation</code></a></div><div class="xsdoc">Human documentation part</div><div class="xsdochead">Element:
+   <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrd.assign"><code class="literal">assign</code></a></div><div class="xsdoc">Single entry, describes region's properties.</div></div><a id="ref.hrd.documentation"/><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="xsdocwrap"><div class="xsdocdecl">Element:
+    <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrd_documentation"><code class="literal">&lt;documentation&gt;</code></a></div><div class="xsdoc">Human documentation part</div></div><a id="ref.hrd.assign"/><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="xsdocwrap"><div class="xsdocdecl">Element:
+    <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrd_assign"><code class="literal">&lt;assign&gt;</code></a></div><div class="xsdoc">Single entry, describes region's properties. If an entry is specified more than one time, then the latest definition is used. This allows several HRD files to be processed to complete color description of target HRC regions.</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">name</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrd_region-name"><code class="literal">region-name</code></a></div><div class="xsdoc">Full qualified region name (a pair [type:name]). Note, that if region has no HRD properties associations, it inherits properties from its parent. If any of its ancestors has no assigned properties, region visualization must be skipped (it becomes fully transparent).</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">fore</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrd_color"><code class="literal">color</code></a></div><div class="xsdoc">Foreground color. If missed, transparent color assumed.</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">back</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrd_color"><code class="literal">color</code></a></div><div class="xsdoc">Background color. If missed, transparent color assumed.</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">style</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="#xsid_hrd_style"><code class="literal">style</code></a></div><div class="xsdoc">Style bits (bold, italic, underline).</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">stext</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="http://www.w3.org/TR/xmlschema-2#string" target="_top"><code class="literal">xs:string</code></a></div><div class="xsdoc">Text prefix mapping (foreground).</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">etext</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="http://www.w3.org/TR/xmlschema-2#string" target="_top"><code class="literal">xs:string</code></a></div><div class="xsdoc">Text prefix mapping (background).</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">sback</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="http://www.w3.org/TR/xmlschema-2#string" target="_top"><code class="literal">xs:string</code></a></div><div class="xsdoc">Text Suffix mapping (foreground).</div><div class="xsdochead">Attribute:
+   <code xmlns="http://www.w3.org/1999/xhtml" class="literal">eback</code>, type:
+     <a xmlns="http://www.w3.org/1999/xhtml" href="http://www.w3.org/TR/xmlschema-2#string" target="_top"><code class="literal">xs:string</code></a></div><div class="xsdoc">Text Suffix mapping (background).</div></div><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+It is possible to maintain different HRD files for different languages,
+or to compile them into one single HRD file.
+The former allows you to distribute recommended settings with each language,
+while the latter to unify modification and storage of changed HRD
+settings within provided UI.
+
+</div><pre xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="source">&lt;<span class="xs_elem">schema</span> <span class="xs_attr">targetNamespace</span>="<span class="xs_attrval">http://colorer.sf.net/2003/hrd</span>" <span class="xs_attr">elementFormDefault</span>="<span class="xs_attrval">qualified</span>"
+  xmlns="http://www.w3.org/2001/XMLSchema"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+
+  &lt;<span class="xs_elem">element</span> <span class="xs_attr">name</span>="<span class="xs_attrval">hrd</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">hrd</span>"/&gt;
+
+<a xmlns="http://www.w3.org/1999/xhtml" id="xsid_hrd_hrd"/>  &lt;<span class="xs_elem">complexType</span> <span class="xs_attr">name</span>="<span class="xs_attrval"><a href="#ref.hrd.hrd">hrd</a></span>"&gt;
+    &lt;<span class="xs_elem">sequence</span>&gt;
+      &lt;<span class="xs_elem">element</span> <span class="xs_attr">name</span>="<span class="xs_attrval">documentation</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">documentation</span>" <span class="xs_attr">minOccurs</span>="<span class="xs_attrval">0</span>"/&gt;
+      &lt;<span class="xs_elem">sequence</span> <span class="xs_attr">minOccurs</span>="<span class="xs_attrval">0</span>" <span class="xs_attr">maxOccurs</span>="<span class="xs_attrval">unbounded</span>"&gt;
+        &lt;<span class="xs_elem">element</span> <span class="xs_attr">name</span>="<span class="xs_attrval">assign</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">assign</span>"/&gt;
+      &lt;/<span class="xs_elem">sequence</span>&gt;
+    &lt;/<span class="xs_elem">sequence</span>&gt;
+  &lt;/<span class="xs_elem">complexType</span>&gt;
+
+<a xmlns="http://www.w3.org/1999/xhtml" id="xsid_hrd_documentation"/>  &lt;<span class="xs_elem">complexType</span> <span class="xs_attr">name</span>="<span class="xs_attrval"><a href="#ref.hrd.documentation">documentation</a></span>" <span class="xs_attr">mixed</span>="<span class="xs_attrval">true</span>"&gt;
+    &lt;<span class="xs_elem">sequence</span> <span class="xs_attr">minOccurs</span>="<span class="xs_attrval">0</span>" <span class="xs_attr">maxOccurs</span>="<span class="xs_attrval">unbounded</span>"&gt;
+      &lt;<span class="xs_elem">any</span> <span class="xs_attr">namespace</span>="<span class="xs_attrval">##other</span>" <span class="xs_attr">processContents</span>="<span class="xs_attrval">skip</span>"/&gt;
+    &lt;/<span class="xs_elem">sequence</span>&gt;
+  &lt;/<span class="xs_elem">complexType</span>&gt;
+
+<a xmlns="http://www.w3.org/1999/xhtml" id="xsid_hrd_assign"/>  &lt;<span class="xs_elem">complexType</span> <span class="xs_attr">name</span>="<span class="xs_attrval"><a href="#ref.hrd.assign">assign</a></span>"&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">name</span>" <span class="xs_attr">use</span>="<span class="xs_attrval">required</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">region-name</span>"&gt;
+    &lt;/<span class="xs_elem">attribute</span>&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">fore</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">color</span>"&gt;
+    &lt;/<span class="xs_elem">attribute</span>&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">back</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">color</span>"&gt;
+    &lt;/<span class="xs_elem">attribute</span>&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">style</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">style</span>"&gt;
+    &lt;/<span class="xs_elem">attribute</span>&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">stext</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">xs:string</span>"&gt;
+    &lt;/<span class="xs_elem">attribute</span>&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">etext</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">xs:string</span>"&gt;
+    &lt;/<span class="xs_elem">attribute</span>&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">sback</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">xs:string</span>"&gt;
+    &lt;/<span class="xs_elem">attribute</span>&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">eback</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">xs:string</span>"&gt;
+    &lt;/<span class="xs_elem">attribute</span>&gt;
+  &lt;/<span class="xs_elem">complexType</span>&gt;
+
+<a xmlns="http://www.w3.org/1999/xhtml" id="xsid_hrd_region-name"/>  &lt;<span class="xs_elem">simpleType</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region-name</span>"&gt;
+    &lt;<span class="xs_elem">restriction</span> <span class="xs_attr">base</span>="<span class="xs_attrval">xs:string</span>"&gt;
+      &lt;<span class="xs_elem">pattern</span> <span class="xs_attr">value</span>="<span class="xs_attrval">\i\c*\:\i\c*</span>"/&gt;
+    &lt;/<span class="xs_elem">restriction</span>&gt;
+  &lt;/<span class="xs_elem">simpleType</span>&gt;
+
+<a xmlns="http://www.w3.org/1999/xhtml" id="xsid_hrd_color"/>  &lt;<span class="xs_elem">simpleType</span> <span class="xs_attr">name</span>="<span class="xs_attrval">color</span>"&gt;
+    &lt;<span class="xs_elem">restriction</span> <span class="xs_attr">base</span>="<span class="xs_attrval">xs:string</span>"&gt;
+      &lt;<span class="xs_elem">pattern</span> <span class="xs_attr">value</span>="<span class="xs_attrval">#?[\dA-Fa-f]{1,6}</span>"/&gt;
+    &lt;/<span class="xs_elem">restriction</span>&gt;
+  &lt;/<span class="xs_elem">simpleType</span>&gt;
+
+<a xmlns="http://www.w3.org/1999/xhtml" id="xsid_hrd_style"/>  &lt;<span class="xs_elem">simpleType</span> <span class="xs_attr">name</span>="<span class="xs_attrval">style</span>"&gt;
+    &lt;<span class="xs_elem">restriction</span> <span class="xs_attr">base</span>="<span class="xs_attrval">xs:string</span>"&gt;
+      &lt;<span class="xs_elem">pattern</span> <span class="xs_attr">value</span>="<span class="xs_attrval">\d</span>"/&gt;
+    &lt;/<span class="xs_elem">restriction</span>&gt;
+  &lt;/<span class="xs_elem">simpleType</span>&gt;
+&lt;/<span class="xs_elem">schema</span>&gt;
+</pre><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+</div></div><div class="appendix" lang="en"><h2 class="title" style="clear: both"><a id="hrcxsd"/>D. XML Schema for HRC Language</h2><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+This XML Schema was automatically generated
+from the original <span xmlns="http://www.w3.org/1999/xhtml" class="emphasis"><em>hrc.xsd</em></span> source, available at
+<a xmlns="http://www.w3.org/1999/xhtml" href="http://colorer.sf.net/2003/hrc.xsd" target="_top">http://colorer.sf.net/2003/hrc.xsd</a>.
+All comments and documentation tags were stripped to achieve more compact format.
+To use this schema for other than informational purposes use up-to-date
+version available from the link above.
+</div><pre xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="source">&lt;<span class="xs_elem">schema</span> <span class="xs_attr">targetNamespace</span>="<span class="xs_attrval">http://colorer.sf.net/2003/hrc</span>" <span class="xs_attr">elementFormDefault</span>="<span class="xs_attrval">qualified</span>"
+  xmlns="http://www.w3.org/2001/XMLSchema"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+
+<a xmlns="http://www.w3.org/1999/xhtml" id="xsid_hrc_REstring"/>  &lt;<span class="xs_elem">simpleType</span> <span class="xs_attr">name</span>="<span class="xs_attrval">REstring</span>"&gt;
+    &lt;<span class="xs_elem">restriction</span> <span class="xs_attr">base</span>="<span class="xs_attrval">xs:string</span>"&gt;
+      &lt;<span class="xs_elem">whiteSpace</span> <span class="xs_attr">value</span>="<span class="xs_attrval">collapse</span>"/&gt;
+      &lt;<span class="xs_elem">pattern</span> <span class="xs_attr">value</span>="<span class="xs_attrval">/.*/[ix]*</span>"/&gt;
+    &lt;/<span class="xs_elem">restriction</span>&gt;
+  &lt;/<span class="xs_elem">simpleType</span>&gt;
+
+<a xmlns="http://www.w3.org/1999/xhtml" id="xsid_hrc_REworddiv"/>  &lt;<span class="xs_elem">simpleType</span> <span class="xs_attr">name</span>="<span class="xs_attrval">REworddiv</span>"&gt;
+    &lt;<span class="xs_elem">restriction</span> <span class="xs_attr">base</span>="<span class="xs_attrval">xs:string</span>"&gt;
+      &lt;<span class="xs_elem">whiteSpace</span> <span class="xs_attr">value</span>="<span class="xs_attrval">collapse</span>"/&gt;
+      &lt;<span class="xs_elem">pattern</span> <span class="xs_attr">value</span>="<span class="xs_attrval">\[.*\]|%.*;</span>"/&gt;
+    &lt;/<span class="xs_elem">restriction</span>&gt;
+  &lt;/<span class="xs_elem">simpleType</span>&gt;
+
+<a xmlns="http://www.w3.org/1999/xhtml" id="xsid_hrc_REentity"/>  &lt;<span class="xs_elem">simpleType</span> <span class="xs_attr">name</span>="<span class="xs_attrval">REentity</span>"&gt;
+    &lt;<span class="xs_elem">restriction</span> <span class="xs_attr">base</span>="<span class="xs_attrval">xs:string</span>"&gt;
+      &lt;<span class="xs_elem">whiteSpace</span> <span class="xs_attr">value</span>="<span class="xs_attrval">collapse</span>"/&gt;
+      &lt;<span class="xs_elem">pattern</span> <span class="xs_attr">value</span>="<span class="xs_attrval">.*</span>"/&gt;
+    &lt;/<span class="xs_elem">restriction</span>&gt;
+  &lt;/<span class="xs_elem">simpleType</span>&gt;
+
+<a xmlns="http://www.w3.org/1999/xhtml" id="xsid_hrc_REstring-or-null"/>  &lt;<span class="xs_elem">simpleType</span> <span class="xs_attr">name</span>="<span class="xs_attrval">REstring-or-null</span>"&gt;
+    &lt;<span class="xs_elem">union</span> <span class="xs_attr">memberTypes</span>="<span class="xs_attrval">REstring</span>"&gt;
+      &lt;<span class="xs_elem">simpleType</span>&gt;
+        &lt;<span class="xs_elem">restriction</span> <span class="xs_attr">base</span>="<span class="xs_attrval">xs:string</span>"&gt;
+          &lt;<span class="xs_elem">enumeration</span> <span class="xs_attr">value</span>="<span class="xs_attrval"/>"/&gt;
+        &lt;/<span class="xs_elem">restriction</span>&gt;
+      &lt;/<span class="xs_elem">simpleType</span>&gt;
+    &lt;/<span class="xs_elem">union</span>&gt;
+  &lt;/<span class="xs_elem">simpleType</span>&gt;
+
+<a xmlns="http://www.w3.org/1999/xhtml" id="xsid_hrc_QName"/>  &lt;<span class="xs_elem">simpleType</span> <span class="xs_attr">name</span>="<span class="xs_attrval">QName</span>"&gt;
+    &lt;<span class="xs_elem">restriction</span> <span class="xs_attr">base</span>="<span class="xs_attrval">xs:QName</span>"&gt;
+      &lt;<span class="xs_elem">pattern</span> <span class="xs_attr">value</span>="<span class="xs_attrval">(\i\c*:)?\i\c*</span>"/&gt;
+    &lt;/<span class="xs_elem">restriction</span>&gt;
+  &lt;/<span class="xs_elem">simpleType</span>&gt;
+
+  &lt;<span class="xs_elem">attributeGroup</span> <span class="xs_attr">name</span>="<span class="xs_attrval">regionX</span>"&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region0</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region1</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region2</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region3</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region4</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region5</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region6</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region7</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region8</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region9</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">regiona</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">regionb</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">regionc</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">regiond</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">regione</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">regionf</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+  &lt;/<span class="xs_elem">attributeGroup</span>&gt;
+
+  &lt;<span class="xs_elem">element</span> <span class="xs_attr">name</span>="<span class="xs_attrval">hrc</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">hrc</span>"/&gt;
+
+<a xmlns="http://www.w3.org/1999/xhtml" id="xsid_hrc_hrc"/>  &lt;<span class="xs_elem">complexType</span> <span class="xs_attr">name</span>="<span class="xs_attrval"><a href="#ref.hrc.hrc">hrc</a></span>"&gt;
+    &lt;<span class="xs_elem">sequence</span>&gt;
+      &lt;<span class="xs_elem">element</span> <span class="xs_attr">name</span>="<span class="xs_attrval">annotation</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">annotation</span>" <span class="xs_attr">minOccurs</span>="<span class="xs_attrval">0</span>"/&gt;
+      &lt;<span class="xs_elem">choice</span> <span class="xs_attr">minOccurs</span>="<span class="xs_attrval">0</span>" <span class="xs_attr">maxOccurs</span>="<span class="xs_attrval">unbounded</span>"&gt;
+        &lt;<span class="xs_elem">element</span> <span class="xs_attr">name</span>="<span class="xs_attrval">prototype</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">prototype</span>"/&gt;
+        &lt;<span class="xs_elem">element</span> <span class="xs_attr">name</span>="<span class="xs_attrval">package</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">package</span>"/&gt;
+        &lt;<span class="xs_elem">element</span> <span class="xs_attr">name</span>="<span class="xs_attrval">type</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">type</span>"/&gt;
+      &lt;/<span class="xs_elem">choice</span>&gt;
+    &lt;/<span class="xs_elem">sequence</span>&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">version</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">xs:NMTOKEN</span>" <span class="xs_attr">use</span>="<span class="xs_attrval">required</span>"&gt;
+    &lt;/<span class="xs_elem">attribute</span>&gt;
+  &lt;/<span class="xs_elem">complexType</span>&gt;
+
+<a xmlns="http://www.w3.org/1999/xhtml" id="xsid_hrc_annotation"/>  &lt;<span class="xs_elem">complexType</span> <span class="xs_attr">name</span>="<span class="xs_attrval"><a href="#ref.hrc.annotation">annotation</a></span>"&gt;
+    &lt;<span class="xs_elem">choice</span> <span class="xs_attr">minOccurs</span>="<span class="xs_attrval">0</span>" <span class="xs_attr">maxOccurs</span>="<span class="xs_attrval">unbounded</span>"&gt;
+      &lt;<span class="xs_elem">element</span> <span class="xs_attr">name</span>="<span class="xs_attrval">appinfo</span>"&gt;
+        &lt;<span class="xs_elem">complexType</span> <span class="xs_attr">mixed</span>="<span class="xs_attrval">true</span>"&gt;
+          &lt;<span class="xs_elem">sequence</span> <span class="xs_attr">minOccurs</span>="<span class="xs_attrval">0</span>" <span class="xs_attr">maxOccurs</span>="<span class="xs_attrval">unbounded</span>"&gt;
+            &lt;<span class="xs_elem">any</span> <span class="xs_attr">namespace</span>="<span class="xs_attrval">##other</span>" <span class="xs_attr">processContents</span>="<span class="xs_attrval">lax</span>"/&gt;
+          &lt;/<span class="xs_elem">sequence</span>&gt;
+        &lt;/<span class="xs_elem">complexType</span>&gt;
+      &lt;/<span class="xs_elem">element</span>&gt;
+      &lt;<span class="xs_elem">element</span> <span class="xs_attr">name</span>="<span class="xs_attrval">documentation</span>"&gt;
+        &lt;<span class="xs_elem">complexType</span> <span class="xs_attr">mixed</span>="<span class="xs_attrval">true</span>"&gt;
+          &lt;<span class="xs_elem">sequence</span> <span class="xs_attr">minOccurs</span>="<span class="xs_attrval">0</span>" <span class="xs_attr">maxOccurs</span>="<span class="xs_attrval">unbounded</span>"&gt;
+            &lt;<span class="xs_elem">any</span> <span class="xs_attr">namespace</span>="<span class="xs_attrval">##other</span>" <span class="xs_attr">processContents</span>="<span class="xs_attrval">skip</span>"/&gt;
+          &lt;/<span class="xs_elem">sequence</span>&gt;
+        &lt;/<span class="xs_elem">complexType</span>&gt;
+      &lt;/<span class="xs_elem">element</span>&gt;
+      &lt;<span class="xs_elem">element</span> <span class="xs_attr">name</span>="<span class="xs_attrval">contributors</span>"&gt;
+        &lt;<span class="xs_elem">complexType</span> <span class="xs_attr">mixed</span>="<span class="xs_attrval">true</span>"&gt;
+          &lt;<span class="xs_elem">sequence</span> <span class="xs_attr">minOccurs</span>="<span class="xs_attrval">0</span>" <span class="xs_attr">maxOccurs</span>="<span class="xs_attrval">unbounded</span>"&gt;
+            &lt;<span class="xs_elem">any</span> <span class="xs_attr">namespace</span>="<span class="xs_attrval">##other</span>" <span class="xs_attr">processContents</span>="<span class="xs_attrval">lax</span>"/&gt;
+          &lt;/<span class="xs_elem">sequence</span>&gt;
+        &lt;/<span class="xs_elem">complexType</span>&gt;
+      &lt;/<span class="xs_elem">element</span>&gt;
+    &lt;/<span class="xs_elem">choice</span>&gt;
+  &lt;/<span class="xs_elem">complexType</span>&gt;
+
+<a xmlns="http://www.w3.org/1999/xhtml" id="xsid_hrc_package"/>  &lt;<span class="xs_elem">complexType</span> <span class="xs_attr">name</span>="<span class="xs_attrval"><a href="#ref.hrc.package">package</a></span>"&gt;
+    &lt;<span class="xs_elem">sequence</span>&gt;
+      &lt;<span class="xs_elem">element</span> <span class="xs_attr">name</span>="<span class="xs_attrval">annotation</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">annotation</span>" <span class="xs_attr">minOccurs</span>="<span class="xs_attrval">0</span>"/&gt;
+      &lt;<span class="xs_elem">element</span> <span class="xs_attr">name</span>="<span class="xs_attrval">location</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">location</span>" <span class="xs_attr">minOccurs</span>="<span class="xs_attrval">0</span>"/&gt;
+    &lt;/<span class="xs_elem">sequence</span>&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">name</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">xs:NCName</span>" <span class="xs_attr">use</span>="<span class="xs_attrval">required</span>"&gt;
+    &lt;/<span class="xs_elem">attribute</span>&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">description</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">xs:string</span>" <span class="xs_attr">use</span>="<span class="xs_attrval">required</span>"&gt;
+    &lt;/<span class="xs_elem">attribute</span>&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">targetNamespace</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">xs:anyURI</span>"&gt;
+    &lt;/<span class="xs_elem">attribute</span>&gt;
+  &lt;/<span class="xs_elem">complexType</span>&gt;
+
+<a xmlns="http://www.w3.org/1999/xhtml" id="xsid_hrc_prototype"/>  &lt;<span class="xs_elem">complexType</span> <span class="xs_attr">name</span>="<span class="xs_attrval"><a href="#ref.hrc.prototype">prototype</a></span>"&gt;
+    &lt;<span class="xs_elem">sequence</span>&gt;
+      &lt;<span class="xs_elem">element</span> <span class="xs_attr">name</span>="<span class="xs_attrval">annotation</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">annotation</span>" <span class="xs_attr">minOccurs</span>="<span class="xs_attrval">0</span>"/&gt;
+      &lt;<span class="xs_elem">element</span> <span class="xs_attr">name</span>="<span class="xs_attrval">location</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">location</span>" <span class="xs_attr">minOccurs</span>="<span class="xs_attrval">0</span>"/&gt;
+      &lt;<span class="xs_elem">element</span> <span class="xs_attr">name</span>="<span class="xs_attrval">filename</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">filename</span>" <span class="xs_attr">minOccurs</span>="<span class="xs_attrval">0</span>" <span class="xs_attr">maxOccurs</span>="<span class="xs_attrval">unbounded</span>"/&gt;
+      &lt;<span class="xs_elem">element</span> <span class="xs_attr">name</span>="<span class="xs_attrval">firstline</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">firstline</span>" <span class="xs_attr">minOccurs</span>="<span class="xs_attrval">0</span>" <span class="xs_attr">maxOccurs</span>="<span class="xs_attrval">unbounded</span>"/&gt;
+      &lt;<span class="xs_elem">element</span> <span class="xs_attr">name</span>="<span class="xs_attrval">parameters</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">parameters</span>" <span class="xs_attr">minOccurs</span>="<span class="xs_attrval">0</span>"/&gt;
+    &lt;/<span class="xs_elem">sequence</span>&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">name</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">xs:NCName</span>" <span class="xs_attr">use</span>="<span class="xs_attrval">required</span>"&gt;
+    &lt;/<span class="xs_elem">attribute</span>&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">description</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">xs:string</span>" <span class="xs_attr">use</span>="<span class="xs_attrval">required</span>"&gt;
+    &lt;/<span class="xs_elem">attribute</span>&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">group</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">xs:Name</span>"&gt;
+    &lt;/<span class="xs_elem">attribute</span>&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">targetNamespace</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">xs:anyURI</span>"&gt;
+    &lt;/<span class="xs_elem">attribute</span>&gt;
+  &lt;/<span class="xs_elem">complexType</span>&gt;
+
+<a xmlns="http://www.w3.org/1999/xhtml" id="xsid_hrc_location"/>  &lt;<span class="xs_elem">complexType</span> <span class="xs_attr">name</span>="<span class="xs_attrval"><a href="#ref.hrc.location">location</a></span>"&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">link</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">xs:anyURI</span>" <span class="xs_attr">use</span>="<span class="xs_attrval">required</span>"/&gt;
+  &lt;/<span class="xs_elem">complexType</span>&gt;
+
+<a xmlns="http://www.w3.org/1999/xhtml" id="xsid_hrc_filename"/>  &lt;<span class="xs_elem">complexType</span> <span class="xs_attr">name</span>="<span class="xs_attrval"><a href="#ref.hrc.filename">filename</a></span>"&gt;
+    &lt;<span class="xs_elem">simpleContent</span>&gt;
+      &lt;<span class="xs_elem">extension</span> <span class="xs_attr">base</span>="<span class="xs_attrval">REstring</span>"&gt;
+        &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">weight</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">xs:decimal</span>" <span class="xs_attr">default</span>="<span class="xs_attrval">2</span>"&gt;
+        &lt;/<span class="xs_elem">attribute</span>&gt;
+      &lt;/<span class="xs_elem">extension</span>&gt;
+    &lt;/<span class="xs_elem">simpleContent</span>&gt;
+  &lt;/<span class="xs_elem">complexType</span>&gt;
+
+<a xmlns="http://www.w3.org/1999/xhtml" id="xsid_hrc_firstline"/>  &lt;<span class="xs_elem">complexType</span> <span class="xs_attr">name</span>="<span class="xs_attrval"><a href="#ref.hrc.firstline">firstline</a></span>"&gt;
+    &lt;<span class="xs_elem">simpleContent</span>&gt;
+      &lt;<span class="xs_elem">extension</span> <span class="xs_attr">base</span>="<span class="xs_attrval">REstring</span>"&gt;
+        &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">weight</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">xs:decimal</span>" <span class="xs_attr">default</span>="<span class="xs_attrval">1</span>"&gt;
+        &lt;/<span class="xs_elem">attribute</span>&gt;
+      &lt;/<span class="xs_elem">extension</span>&gt;
+    &lt;/<span class="xs_elem">simpleContent</span>&gt;
+  &lt;/<span class="xs_elem">complexType</span>&gt;
+
+<a xmlns="http://www.w3.org/1999/xhtml" id="xsid_hrc_parameters"/>  &lt;<span class="xs_elem">complexType</span> <span class="xs_attr">name</span>="<span class="xs_attrval"><a href="#ref.hrc.parameters">parameters</a></span>"&gt;
+    &lt;<span class="xs_elem">sequence</span> <span class="xs_attr">minOccurs</span>="<span class="xs_attrval">0</span>" <span class="xs_attr">maxOccurs</span>="<span class="xs_attrval">unbounded</span>"&gt;
+      &lt;<span class="xs_elem">element</span> <span class="xs_attr">name</span>="<span class="xs_attrval">param</span>"&gt;
+        &lt;<span class="xs_elem">complexType</span>&gt;
+          &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">name</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">xs:string</span>" <span class="xs_attr">use</span>="<span class="xs_attrval">required</span>"/&gt;
+          &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">value</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">xs:string</span>" <span class="xs_attr">use</span>="<span class="xs_attrval">required</span>"/&gt;
+          &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">description</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">xs:string</span>" <span class="xs_attr">use</span>="<span class="xs_attrval">optional</span>"/&gt;
+        &lt;/<span class="xs_elem">complexType</span>&gt;
+      &lt;/<span class="xs_elem">element</span>&gt;
+    &lt;/<span class="xs_elem">sequence</span>&gt;
+  &lt;/<span class="xs_elem">complexType</span>&gt;
+
+<a xmlns="http://www.w3.org/1999/xhtml" id="xsid_hrc_type"/>  &lt;<span class="xs_elem">complexType</span> <span class="xs_attr">name</span>="<span class="xs_attrval"><a href="#ref.hrc.type">type</a></span>"&gt;
+    &lt;<span class="xs_elem">choice</span> <span class="xs_attr">minOccurs</span>="<span class="xs_attrval">0</span>" <span class="xs_attr">maxOccurs</span>="<span class="xs_attrval">unbounded</span>"&gt;
+      &lt;<span class="xs_elem">element</span> <span class="xs_attr">name</span>="<span class="xs_attrval">annotation</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">annotation</span>"/&gt;
+      &lt;<span class="xs_elem">element</span> <span class="xs_attr">name</span>="<span class="xs_attrval">import</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">import</span>"/&gt;
+      &lt;<span class="xs_elem">element</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">region</span>"/&gt;
+      &lt;<span class="xs_elem">element</span> <span class="xs_attr">name</span>="<span class="xs_attrval">entity</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">entity</span>"/&gt;
+      &lt;<span class="xs_elem">element</span> <span class="xs_attr">name</span>="<span class="xs_attrval">scheme</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">scheme</span>"/&gt;
+    &lt;/<span class="xs_elem">choice</span>&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">name</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">xs:NCName</span>" <span class="xs_attr">use</span>="<span class="xs_attrval">required</span>"&gt;
+    &lt;/<span class="xs_elem">attribute</span>&gt;
+  &lt;/<span class="xs_elem">complexType</span>&gt;
+
+<a xmlns="http://www.w3.org/1999/xhtml" id="xsid_hrc_scheme"/>  &lt;<span class="xs_elem">complexType</span> <span class="xs_attr">name</span>="<span class="xs_attrval"><a href="#ref.hrc.scheme">scheme</a></span>"&gt;
+    &lt;<span class="xs_elem">sequence</span>&gt;
+      &lt;<span class="xs_elem">element</span> <span class="xs_attr">name</span>="<span class="xs_attrval">annotation</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">annotation</span>" <span class="xs_attr">minOccurs</span>="<span class="xs_attrval">0</span>"/&gt;
+      &lt;<span class="xs_elem">choice</span> <span class="xs_attr">minOccurs</span>="<span class="xs_attrval">0</span>" <span class="xs_attr">maxOccurs</span>="<span class="xs_attrval">unbounded</span>"&gt;
+        &lt;<span class="xs_elem">element</span> <span class="xs_attr">name</span>="<span class="xs_attrval">regexp</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">regexp</span>"/&gt;
+        &lt;<span class="xs_elem">element</span> <span class="xs_attr">name</span>="<span class="xs_attrval">block</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">block</span>"/&gt;
+        &lt;<span class="xs_elem">element</span> <span class="xs_attr">name</span>="<span class="xs_attrval">keywords</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">keywords</span>"/&gt;
+        &lt;<span class="xs_elem">element</span> <span class="xs_attr">name</span>="<span class="xs_attrval">inherit</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">inherit</span>"/&gt;
+      &lt;/<span class="xs_elem">choice</span>&gt;
+    &lt;/<span class="xs_elem">sequence</span>&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">name</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">xs:NCName</span>" <span class="xs_attr">use</span>="<span class="xs_attrval">required</span>"&gt;
+    &lt;/<span class="xs_elem">attribute</span>&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">if</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">xs:NCName</span>" <span class="xs_attr">use</span>="<span class="xs_attrval">optional</span>"&gt;
+    &lt;/<span class="xs_elem">attribute</span>&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">unless</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">xs:NCName</span>" <span class="xs_attr">use</span>="<span class="xs_attrval">optional</span>"&gt;
+    &lt;/<span class="xs_elem">attribute</span>&gt;
+  &lt;/<span class="xs_elem">complexType</span>&gt;
+
+<a xmlns="http://www.w3.org/1999/xhtml" id="xsid_hrc_import"/>  &lt;<span class="xs_elem">complexType</span> <span class="xs_attr">name</span>="<span class="xs_attrval"><a href="#ref.hrc.import">import</a></span>"&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">type</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">xs:NCName</span>" <span class="xs_attr">use</span>="<span class="xs_attrval">required</span>"/&gt;
+  &lt;/<span class="xs_elem">complexType</span>&gt;
+
+<a xmlns="http://www.w3.org/1999/xhtml" id="xsid_hrc_entity"/>  &lt;<span class="xs_elem">complexType</span> <span class="xs_attr">name</span>="<span class="xs_attrval"><a href="#ref.hrc.entity">entity</a></span>"&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">name</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">xs:NCName</span>" <span class="xs_attr">use</span>="<span class="xs_attrval">required</span>"&gt;
+    &lt;/<span class="xs_elem">attribute</span>&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">value</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">REentity</span>" <span class="xs_attr">use</span>="<span class="xs_attrval">required</span>"&gt;
+    &lt;/<span class="xs_elem">attribute</span>&gt;
+  &lt;/<span class="xs_elem">complexType</span>&gt;
+
+<a xmlns="http://www.w3.org/1999/xhtml" id="xsid_hrc_region"/>  &lt;<span class="xs_elem">complexType</span> <span class="xs_attr">name</span>="<span class="xs_attrval"><a href="#ref.hrc.region">region</a></span>"&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">name</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">xs:NCName</span>" <span class="xs_attr">use</span>="<span class="xs_attrval">required</span>"&gt;
+    &lt;/<span class="xs_elem">attribute</span>&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">parent</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"&gt;
+    &lt;/<span class="xs_elem">attribute</span>&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">description</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">xs:string</span>"&gt;
+    &lt;/<span class="xs_elem">attribute</span>&gt;
+  &lt;/<span class="xs_elem">complexType</span>&gt;
+
+<a xmlns="http://www.w3.org/1999/xhtml" id="xsid_hrc_regexp"/>  &lt;<span class="xs_elem">complexType</span> <span class="xs_attr">name</span>="<span class="xs_attrval"><a href="#ref.hrc.regexp">regexp</a></span>"&gt;
+    &lt;<span class="xs_elem">complexContent</span>&gt;
+      &lt;<span class="xs_elem">extension</span> <span class="xs_attr">base</span>="<span class="xs_attrval">blockInner</span>"&gt;
+        &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+        &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">priority</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">priority</span>" <span class="xs_attr">default</span>="<span class="xs_attrval">normal</span>"/&gt;
+      &lt;/<span class="xs_elem">extension</span>&gt;
+    &lt;/<span class="xs_elem">complexContent</span>&gt;
+  &lt;/<span class="xs_elem">complexType</span>&gt;
+
+<a xmlns="http://www.w3.org/1999/xhtml" id="xsid_hrc_priority"/>  &lt;<span class="xs_elem">simpleType</span> <span class="xs_attr">name</span>="<span class="xs_attrval">priority</span>"&gt;
+    &lt;<span class="xs_elem">restriction</span> <span class="xs_attr">base</span>="<span class="xs_attrval">xs:string</span>"&gt;
+      &lt;<span class="xs_elem">enumeration</span> <span class="xs_attr">value</span>="<span class="xs_attrval">low</span>"/&gt;
+      &lt;<span class="xs_elem">enumeration</span> <span class="xs_attr">value</span>="<span class="xs_attrval">normal</span>"/&gt;
+    &lt;/<span class="xs_elem">restriction</span>&gt;
+  &lt;/<span class="xs_elem">simpleType</span>&gt;
+
+<a xmlns="http://www.w3.org/1999/xhtml" id="xsid_hrc_block"/>  &lt;<span class="xs_elem">complexType</span> <span class="xs_attr">name</span>="<span class="xs_attrval"><a href="#ref.hrc.block">block</a></span>"&gt;
+    &lt;<span class="xs_elem">sequence</span> <span class="xs_attr">minOccurs</span>="<span class="xs_attrval">0</span>"&gt;
+      &lt;<span class="xs_elem">element</span> <span class="xs_attr">name</span>="<span class="xs_attrval">start</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">blockInner</span>"/&gt;
+      &lt;<span class="xs_elem">element</span> <span class="xs_attr">name</span>="<span class="xs_attrval">end</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">blockInner</span>"/&gt;
+    &lt;/<span class="xs_elem">sequence</span>&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">start</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">REstring</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">end</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">REstring</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">scheme</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>" <span class="xs_attr">use</span>="<span class="xs_attrval">required</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">priority</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">priority</span>" <span class="xs_attr">default</span>="<span class="xs_attrval">normal</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">content-priority</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">priority</span>" <span class="xs_attr">default</span>="<span class="xs_attrval">normal</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">inner-region</span>" <span class="xs_attr">default</span>="<span class="xs_attrval">no</span>"&gt;
+      &lt;<span class="xs_elem">simpleType</span>&gt;
+        &lt;<span class="xs_elem">restriction</span> <span class="xs_attr">base</span>="<span class="xs_attrval">xs:string</span>"&gt;
+          &lt;<span class="xs_elem">enumeration</span> <span class="xs_attr">value</span>="<span class="xs_attrval">yes</span>"/&gt;
+          &lt;<span class="xs_elem">enumeration</span> <span class="xs_attr">value</span>="<span class="xs_attrval">no</span>"/&gt;
+        &lt;/<span class="xs_elem">restriction</span>&gt;
+      &lt;/<span class="xs_elem">simpleType</span>&gt;
+    &lt;/<span class="xs_elem">attribute</span>&gt;
+    &lt;<span class="xs_elem">attributeGroup</span> <span class="xs_attr">ref</span>="<span class="xs_attrval">regionXX</span>"/&gt;
+  &lt;/<span class="xs_elem">complexType</span>&gt;
+
+  &lt;<span class="xs_elem">attributeGroup</span> <span class="xs_attr">name</span>="<span class="xs_attrval">regionXX</span>"&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region00</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region01</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region02</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region03</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region04</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region05</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region06</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region07</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region08</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region09</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region0a</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region0b</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region0c</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region0d</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region0e</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region0f</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region10</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region11</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region12</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region13</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region14</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region15</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region16</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region17</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region18</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region19</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region1a</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region1b</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region1c</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region1d</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region1e</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region1f</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+  &lt;/<span class="xs_elem">attributeGroup</span>&gt;
+
+<a xmlns="http://www.w3.org/1999/xhtml" id="xsid_hrc_blockInner"/>  &lt;<span class="xs_elem">complexType</span> <span class="xs_attr">name</span>="<span class="xs_attrval"><a href="#ref.hrc.blockInner">blockInner</a></span>"&gt;
+    &lt;<span class="xs_elem">simpleContent</span>&gt;
+      &lt;<span class="xs_elem">extension</span> <span class="xs_attr">base</span>="<span class="xs_attrval">REstring</span>"&gt;
+        &lt;<span class="xs_elem">attributeGroup</span> <span class="xs_attr">ref</span>="<span class="xs_attrval">regionX</span>"/&gt;
+        &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">match</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">REstring</span>"&gt;
+        &lt;/<span class="xs_elem">attribute</span>&gt;
+      &lt;/<span class="xs_elem">extension</span>&gt;
+    &lt;/<span class="xs_elem">simpleContent</span>&gt;
+  &lt;/<span class="xs_elem">complexType</span>&gt;
+
+<a xmlns="http://www.w3.org/1999/xhtml" id="xsid_hrc_inherit"/>  &lt;<span class="xs_elem">complexType</span> <span class="xs_attr">name</span>="<span class="xs_attrval"><a href="#ref.hrc.inherit">inherit</a></span>"&gt;
+    &lt;<span class="xs_elem">sequence</span>&gt;
+      &lt;<span class="xs_elem">element</span> <span class="xs_attr">name</span>="<span class="xs_attrval">virtual</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">virtual</span>" <span class="xs_attr">minOccurs</span>="<span class="xs_attrval">0</span>" <span class="xs_attr">maxOccurs</span>="<span class="xs_attrval">unbounded</span>"/&gt;
+    &lt;/<span class="xs_elem">sequence</span>&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">scheme</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>" <span class="xs_attr">use</span>="<span class="xs_attrval">required</span>"&gt;
+    &lt;/<span class="xs_elem">attribute</span>&gt;
+  &lt;/<span class="xs_elem">complexType</span>&gt;
+
+<a xmlns="http://www.w3.org/1999/xhtml" id="xsid_hrc_virtual"/>  &lt;<span class="xs_elem">complexType</span> <span class="xs_attr">name</span>="<span class="xs_attrval"><a href="#ref.hrc.virtual">virtual</a></span>"&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">scheme</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>" <span class="xs_attr">use</span>="<span class="xs_attrval">required</span>"&gt;
+    &lt;/<span class="xs_elem">attribute</span>&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">subst-scheme</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>" <span class="xs_attr">use</span>="<span class="xs_attrval">required</span>"&gt;
+    &lt;/<span class="xs_elem">attribute</span>&gt;
+  &lt;/<span class="xs_elem">complexType</span>&gt;
+
+<a xmlns="http://www.w3.org/1999/xhtml" id="xsid_hrc_keywords"/>  &lt;<span class="xs_elem">complexType</span> <span class="xs_attr">name</span>="<span class="xs_attrval"><a href="#ref.hrc.keywords">keywords</a></span>"&gt;
+    &lt;<span class="xs_elem">choice</span> <span class="xs_attr">minOccurs</span>="<span class="xs_attrval">0</span>" <span class="xs_attr">maxOccurs</span>="<span class="xs_attrval">unbounded</span>"&gt;
+      &lt;<span class="xs_elem">element</span> <span class="xs_attr">name</span>="<span class="xs_attrval">word</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">word</span>"/&gt;
+      &lt;<span class="xs_elem">element</span> <span class="xs_attr">name</span>="<span class="xs_attrval">symb</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">symb</span>"/&gt;
+    &lt;/<span class="xs_elem">choice</span>&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">ignorecase</span>" <span class="xs_attr">default</span>="<span class="xs_attrval">yes</span>"&gt;
+      &lt;<span class="xs_elem">simpleType</span>&gt;
+        &lt;<span class="xs_elem">restriction</span> <span class="xs_attr">base</span>="<span class="xs_attrval">xs:string</span>"&gt;
+          &lt;<span class="xs_elem">enumeration</span> <span class="xs_attr">value</span>="<span class="xs_attrval">yes</span>"/&gt;
+          &lt;<span class="xs_elem">enumeration</span> <span class="xs_attr">value</span>="<span class="xs_attrval">no</span>"/&gt;
+        &lt;/<span class="xs_elem">restriction</span>&gt;
+      &lt;/<span class="xs_elem">simpleType</span>&gt;
+    &lt;/<span class="xs_elem">attribute</span>&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"&gt;
+    &lt;/<span class="xs_elem">attribute</span>&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">priority</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">priority</span>" <span class="xs_attr">default</span>="<span class="xs_attrval">low</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">worddiv</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">REworddiv</span>"&gt;
+    &lt;/<span class="xs_elem">attribute</span>&gt;
+  &lt;/<span class="xs_elem">complexType</span>&gt;
+
+<a xmlns="http://www.w3.org/1999/xhtml" id="xsid_hrc_symb"/>  &lt;<span class="xs_elem">complexType</span> <span class="xs_attr">name</span>="<span class="xs_attrval"><a href="#ref.hrc.symb">symb</a></span>"&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">name</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">xs:string</span>" <span class="xs_attr">use</span>="<span class="xs_attrval">required</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+  &lt;/<span class="xs_elem">complexType</span>&gt;
+
+<a xmlns="http://www.w3.org/1999/xhtml" id="xsid_hrc_word"/>  &lt;<span class="xs_elem">complexType</span> <span class="xs_attr">name</span>="<span class="xs_attrval"><a href="#ref.hrc.word">word</a></span>"&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">name</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">xs:string</span>" <span class="xs_attr">use</span>="<span class="xs_attrval">required</span>"/&gt;
+    &lt;<span class="xs_elem">attribute</span> <span class="xs_attr">name</span>="<span class="xs_attrval">region</span>" <span class="xs_attr">type</span>="<span class="xs_attrval">QName</span>"/&gt;
+  &lt;/<span class="xs_elem">complexType</span>&gt;
+&lt;/<span class="xs_elem">schema</span>&gt;
+</pre></div><div class="appendix" lang="en"><h2 class="title" style="clear: both"><a id="history"/>E. History of the changes</h2><div class="itemizedlist"><p class="title"><b>take5.be5 (rev.2), 12 January 2010 (Anatoly Techtonik)</b></p><ul type="disc"><li><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Add <a xmlns="http://www.w3.org/1999/xhtml" href="#basics.parsing" title="2.1. Syntax processing overview">Section 2.1, “Syntax processing overview”</a>.
+</div></li><li><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Reworded <a xmlns="http://www.w3.org/1999/xhtml" href="#schemesyntax.boundaries" title="3.4. Scheme boundaries and priority">Section 3.4, “Scheme boundaries and priority”</a> and <a xmlns="http://www.w3.org/1999/xhtml" href="#priority" title="3.4.1. priority">Section 3.4.1, “priority”</a>.
+</div></li><li><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Documented $ behaviour in low-priority blocks.
+</div></li><li><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Explained XML quoting for <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.regexp">&lt;regexp&gt;</a> attributes.
+</div></li><li><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Minor spelling fixes.
+</div></li></ul></div><div class="itemizedlist"><p class="title"><b>take5.be5, 26 April 2007 (Anatoly Techtonik)</b></p><ul type="disc"><li><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Many parts of the reference were proofreaded, reworded or clarified. There are still many ideas for improvements in comments.
+</div></li><li><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Edits for <a xmlns="http://www.w3.org/1999/xhtml" href="#introduction" title="1. Introduction">Section 1, “Introduction”</a> and abstract.
+</div></li><li><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Core syntax renamed to <a xmlns="http://www.w3.org/1999/xhtml" href="#basics" title="2. Basics">Section 2, “Basics”</a>.
+</div></li><li><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+<a xmlns="http://www.w3.org/1999/xhtml" href="#basics.namespaces" title="2.4. Namespaces">Section 2.4, “Namespaces”</a> clarifications.
+</div></li><li><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Rewritten <a xmlns="http://www.w3.org/1999/xhtml" href="#schemesyntax.keywords" title="3.1. Keyword lists">Section 3.1, “Keyword lists”</a>, RE descriptions, type explanation.
+</div></li><li><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Disambiguation about language features and conventions in <a xmlns="http://www.w3.org/1999/xhtml" href="#coding.std" title="5. HRC Language Features and Conventions">Section 5, “HRC Language Features and Conventions”</a>.
+</div></li><li><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Various DocBook template enhancements (&lt;x:hrc&gt; reference element, ids for examples and tables, renamed entities, visual style fixes etc.)
+</div></li><li><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Igor remarks.
+</div></li><li><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Minor fixes.
+</div></li></ul></div><div class="itemizedlist"><p class="title"><b>take5.beta4, 28 April 2005</b></p><ul type="disc"><li><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+New <a xmlns="http://www.w3.org/1999/xhtml" href="#inner-region" title="3.4.3. inner-region">Section 3.4.3, “inner-region”</a> attribute description.
+</div></li><li><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Minor HRD schema clarifications.
+</div></li></ul></div><div class="itemizedlist"><p class="title"><b>take5.beta4(draft), 19 February 2005</b></p><ul type="disc"><li><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+Clarification of <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.regexp">&lt;regexp&gt;</a> and <a xmlns="http://www.w3.org/1999/xhtml" href="#ref.hrc.block">&lt;block&gt;</a> regions usage.
+</div></li><li><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+"Scheme boundaries and priority" explained.
+</div></li><li><div xmlns="" xmlns:x="uri:custom:schema-db" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="p">
+"HRC Language Coding Conventions" section was added.
+</div></li></ul></div></div><div class="bibliography"><div class="titlepage"><div><div><h2 class="title"><a id="bibliography"/>References</h2></div></div></div><div class="bibliomixed"><a id="xml-rec"/><p class="bibliomixed">[<abbr class="abbrev">XML 1.0</abbr>] 
+ Tim Bray, Jean Paoli, and C. M. Sperberg-McQueen, Eve Maler, editors.
+ <span class="citetitle"><em class="citetitle"><a href="http://www.w3.org/TR/REC-xml" target="_top">Extensible Markup Language (XML) 1.0 Second Edition</a></em></span>.
+ W3C (World Wide Web Consortium), 2000.
+ </p></div><div class="bibliomixed"><a id="xslt-rec"/><p class="bibliomixed">[<abbr class="abbrev">XSLT 1.0</abbr>] 
+ James Clark, editor.
+ <span class="citetitle"><em class="citetitle"><a href="http://www.w3.org/TR/xslt" target="_top">XSL Transformations (XSLT) 1.0</a></em></span>.
+ W3C (World Wide Web Consortium), 1999.
+ </p></div><div class="bibliomixed"><a id="xmlschema-1"/><p class="bibliomixed">[<abbr class="abbrev">W3C XML Schema Structures</abbr>] 
+ 
+ Henry S. Thompson, David Beech, Murray Maloney, Noah Mendelsohn, editors.
+ <span class="citetitle"><em class="citetitle"><a href="http://www.w3.org/TR/xmlschema-1/" target="_top">XML Schema Part 1: Structures</a></em></span>.
+  W3C (World Wide Web Consortium), 2001.
+ </p></div><div class="bibliomixed"><a id="xmlschema-2"/><p class="bibliomixed">[<abbr class="abbrev">W3C XML Schema Datatypes</abbr>] 
+ Paul V. Biron, Ashok Malhotra, editors.
+ <span class="citetitle"><em class="citetitle"><a href="http://www.w3.org/TR/xmlschema-2/" target="_top">XML Schema Part 2: Datatypes</a></em></span>.
+  W3C (World Wide Web Consortium), 2001.
+ </p></div></div></div></body></html>

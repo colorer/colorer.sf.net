@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="keywords" content="syntax highlighting, colorer, colorizer, coloring, syntax check, text parsing, cail lomecb, color, coloring, highliting,  выделение цветом, колорер, расцветка, редактор, Colorizer, text"/>
+<title>Eclipse platform plugin</title>
+<link href="../styles/styles.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" href="../images/logo-small.png"/>
+</head>
+<body>
+<div class='back'><a href='../index.html'><img alt='back' src='../images/back.png' width='40' height='18'/></a></div>
+
+
+<h1>Eclipse platform plugin</h1>
+
+<div>
+ EclipseColorer is based on a native Colorer-take5 library,
+so each platform has its own native part library.
+By default the package contains plugin's stuff compiled for win32, Linux(x86 and x86_64) and MacOS (ppc and x86 platforms).
+</div>
+
+<h2>Features</h2>
+<ul>
+ <li>Enchanced and fixed word wrapping mode.</li>
+ <li>Automatic folding support for mostly all (200+) supported languages<br/>
+     <a href="../sshots/neweclipse4.png"><img src="worddiv.png"/></a>
+ </li>
+ <li>Per-type customizable color schemas and editor parameters.</li>
+ <li>Automatic errors and todo comments annotation.<br/>
+     <a href="../sshots/neweclipse1.png"><img src="annotations.png"/></a>
+ </li>
+ <li>Paired constructions highlighting and matching.<br/>
+     <img src="pairs.png" width="271" height="131"/>
+ </li>
+ <li>Shortcuts for pairs matching.</li>
+ <li>Different color schemes.</li>
+ <li>Replacement of tabs with spaces option.</li>
+ <li>Choosing of currently used syntax mode in editor (list of all available types).</li>
+ <li>Dynamic library reloading.</li>
+ <li>Powerful and flexible outliner for all common languages.<br/>
+     <img src="outline.png" width="252" height="144"/>
+ </li>
+ <li>Errors list is included into the outliner view.</li>
+ <li>Colored sources generation into HTML files (Available in the navigator's context menu).<br/>
+     <img src="gen.png" width="300" height="220"/>
+ </li>
+ <li>Find more in <a href="../sshots/index.html">screenshots</a> section.</li>
+</ul>
+
+<h2>Update site installation</h2>
+<p>
+The easiest way to install colorer is via <strong>Eclipse Update Manager</strong>.
+</p>
+<p>
+Create new location<br/>
+<strong>http://colorer.sf.net/eclipsecolorer/</strong>
+<br/> using update manager,
+and Eclipse will allow you to automatically install EclipseColorer.
+Later you can use this way to simply and efficiently update colorer and
+check for its new versions.
+</p>
+
+<h2>Manual Installation</h2>
+<p>To install Colorer for Eclipse manually you should download
+EclipseColorer-take5.x.x.x.zip package.
+<img style="float: right;" src="eclipse.png" width="416" height="272"/>
+</p>
+<div class="download">
+<a href="http://sourceforge.net/project/showfiles.php?group_id=34855&package_id=75558">Get EclipseColorer</a>
+</div>
+<p>
+This package contains EclipseColorer plugin,
+packed Colorer's HRC database and native library component.
+If you want to rebuild native part of the plugin,
+you have to get SVN trunks for colorer and eclipsecolorer modules.
+</p>
+<p>Unpack content of plugin's package into <code>%ECLIPSEHOME%/plugins/</code>
+folder and restart Eclipse.
+</p>
+
+<p>If you already have development Colorer-take5 Library installed in your system
+(f.e. from full library package version), you can delete <code>colorer</code>
+directory and specify path to your <code>catalog.xml</code> file with one of the
+<a href='../api/classParserFactory.html'>standard locations</a>.
+This way is useful for HRC development and for common usage of HRC catalog.
+</p>
+
+<h2>Customization</h2>
+<p>
+EclipseColorer editor inherits from standard Eclipse Text Editor and implements syntax highlighting, thus allowing to use all default feature of Eclipse Editor.
+You can reuse all default shortcuts, all actions, settings and so on.
+Note, that colorer knows nothing about Java Editor or CDT Editor, so you can't use their extended capabilities line autocompletion, navigation, templating simultaneously with EclipseColorer.
+</p>
+<p>Entry <code>Colorer Library</code> of <code>Windows/Preferences</code> dialog
+contains several options, managing EclipseColorer's editor look and feel.
+These includes: </p>
+<ul>
+ <li>Current editor line highlighting.</li>
+ <li>Editor word-wrap setting.</li>
+ <li>Editor tabulation size.</li>
+ <li>Current coloring style (one of available).</li>
+ <li>Background usage setting (Use default system background or current scheme's explicitly).</li>
+</ul>
+<p>To use paired constructions matching, you can
+open a context menu, when the caret is placed on a paired region.
+There you can choose commands to find and position caret on the other pair,
+or to select all the text content between paired structures.
+These commands could be runned from toolbar buttons also.
+</p>
+
+<p>
+If you want to customize icons used to display items in structure
+tree (outline), place them in
+<code>eclipse\plugins\net.sf.colorer_x.x.x\icons\outline\&lt;schemename></code>
+and name as your regions (use existing files for example).
+</p>
+
+<p>If you want to customize icon for your file type, copy <code>&lt;editor></code> entry under
+   <code>&lt;extension point="org.eclipse.ui.editors"></code> entry and replace
+   <code>id, name, icon, extensions</code> attributes with your values.
+</p>
+
+<!-- Piwik -->
+<script type="text/javascript">
+var pkBaseURL = (("https:" == document.location.protocol) ? "https://sourceforge.net/apps/piwik/colorer/" : "http://sourceforge.net/apps/piwik/colorer/");
+document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script type="text/javascript">
+piwik_action_name = '';
+piwik_idsite = 1;
+piwik_url = pkBaseURL + "piwik.php";
+piwik_log(piwik_action_name, piwik_idsite, piwik_url);
+</script>
+<object><noscript><p><img src="http://sourceforge.net/apps/piwik/colorer/piwik.php?idsite=1" alt="piwik"/></p></noscript></object>
+<!-- End Piwik Tag -->
+
+</body>
+</html>

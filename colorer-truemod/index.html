@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="keywords" content="syntax highlighting, colorer, colorizer, coloring, syntax check, text parsing, cail lomecb, color, coloring, highliting, выделение цветом, колорер, расцветка, редактор, Colorizer, text"/>
+<title>FARColorer truemod</title>
+<link href="../styles/styles.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" href="../images/logo-small.png"/>
+<style>
+.shadow{
+  background: #CCC;
+  padding: 2pt 4pt 4pt 2pt;
+  display: inline-block;
+  margin: 6pt;
+}
+.descr{
+  margin: 10pt;
+  font-size: 1.4em;
+}
+.descr ul{
+  font-size: 0.7em;
+}
+</style>
+</head>
+<body>
+<div class='back'><a href='../index.html'><img alt='back' src='../images/back.png' width='40' height='18'/></a></div>
+
+
+<div style="float: right; margin-top: 20pt;">
+</div>
+
+<h1>FARColorer <span style='color:#00F;'>t</span><span style='color:#01E;'>r</span><span style='color:#21C;'>u</span><span style='color:#40A;'>e</span><span style='color:#607;'>m</span><span style='color:#906;'>o</span><span style='color:#B05;'>d</span></h1>
+
+<h2>Не достало еще?</h2>
+
+<div><img style='border: solid 2pt; vertical-align: top;' src="far-old.png"/></div>
+
+<div class='descr'>
+Да, достало! Это ужасно, скучно и пошло!
+<br/>
+Get a <strong>true</strong> color!
+</div>
+
+<div class="sshots">
+<div class='shadow'>
+<img src="far-rgb-html.png"/>
+</div>
+<div class='shadow'>
+<img src="far-rgb-haml2.png"/>
+</div>
+<div class='shadow'>
+<img src="far-rgb-cpp.png"/>
+</div>
+<div class='shadow'>
+<img src="far-rgb-tex.png"/>
+</div>
+<div class='shadow'>
+<img src="far-rgb-xls.png"/>
+</div>
+<div class='shadow'>
+<img src="far-rgb-xml.png"/>
+</div>
+<div class='shadow'>
+<img src="far-rgb-erb.png"/>
+</div>
+<div class='shadow'>
+<img src="far-rgb-haml.png"/>
+</div>
+</div>
+
+<h2>Бля! Да это Фотошоп!</h2>
+
+<div class="download">
+<a href="http://sourceforge.net/projects/colorer/files/FAR%20Colorer/FarColorer-truemod_02/far-colorer-truemod_02.zip/download">Получите в репу</a>
+</div>
+
+<div class='descr'>
+Готовые бинарники x86.<br/>
+Запускать console.exe, осторожно, читая <a href='../oldies/license.txt'>мантры</a>!<br/>
+</div>
+
+<h2>Помоги нам поиметь это знание!</h2>
+
+<div class='descr'>
+The pack is simple:
+<ul>
+<li>modded Console2</li>
+<li>modded Far2</li>
+<li>modded FarColorer2</li>
+</ul>
+The basic idea is to implement a shared buffer with
+extended annotation attributes (like true color) for each character.
+</div>
+<div class='descr'>
+Then, Console2 learns how to display this, Far2 learns how to draw this,
+and Colorer just learns that it now can use RGB styles!
+</div>
+<div class='descr'>
+Simple, huh?
+</div>
+
+<h2>Хочу кодить!</h2>
+<div class='descr'>
+Похвально. Known issues:
+<ul>
+<li>Console2 internal issues (can't switch codepage, some hotkeys are not working)</li>
+<li>Interference with Far's dialogs (seems no normal solution for this)</li>
+</ul>
+
+А вот TODO list:
+<ul>
+<li>Complete FarColorer internal color magic: paired constructions highlighting, cross, etc</li>
+<li>Fix FAR's problem: fill background in short files with correct value</li>
+<li>Extend AnnotationInfo to support custom drawn borders (for pairs highlighting)</li>
+</ul>
+
+Fixed in truemod_02:
+<ul>
+<li>+Complete FarColorer internal color magic: paires</li>
+<li>+Adopt ConEmu console manager to the same magic (ConEmu author is taking care on this)</li>
+<li>+Random color 'jittering' (need a synchronised access to the annotation shared buffer)</li>
+<li>+Character styles: bold, italic, underline</li>
+</ul>
+Где взять?
+<br/>
+git clone git://colorer.git.sf.net/gitroot/colorer/<a href='http://colorer.git.sourceforge.net/git/gitweb.cgi?p=colorer/pcolorer2;a=summary'>pcolorer2</a>
+<br/>
+git clone git://colorer.git.sf.net/gitroot/colorer/<a href='http://colorer.git.sourceforge.net/git/gitweb.cgi?p=colorer/unicode_far-truemod;a=summary'>unicode_far-truemod</a>
+<br/>
+git clone git://colorer.git.sf.net/gitroot/colorer/<a href='http://colorer.git.sourceforge.net/git/gitweb.cgi?p=colorer/console-truemod;a=summary'>console-truemod</a>
+
+</div>
+
+<h2>Куда идти за помощью?</h2>
+<div class='descr'>
+Все писано для себя, ничего не знаю, никуда не летаю.
+<br/>
+Стучите в гугло-группы:
+<ul>
+<li>
+<a href="http://groups.google.com/group/colorer">Colorer (en)</a>
+</li>
+<li>
+<a href="http://groups.google.com/group/colorer_ru">Colorer (ru)</a>
+</li>
+</ul>
+</div>
+
+<h2>Hum!</h2>
+
+<!-- Piwik -->
+<script type="text/javascript">
+var pkBaseURL = (("https:" == document.location.protocol) ? "https://sourceforge.net/apps/piwik/colorer/" : "http://sourceforge.net/apps/piwik/colorer/");
+document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script type="text/javascript">
+piwik_action_name = '';
+piwik_idsite = 1;
+piwik_url = pkBaseURL + "piwik.php";
+piwik_log(piwik_action_name, piwik_idsite, piwik_url);
+</script>
+<object><noscript><p><img src="http://sourceforge.net/apps/piwik/colorer/piwik.php?idsite=1" alt="piwik"/></p></noscript></object>
+<!-- End Piwik Tag -->
+
+</body>
+</html>
